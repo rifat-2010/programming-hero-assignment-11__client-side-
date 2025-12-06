@@ -4,7 +4,7 @@ import { FaCarRear } from "react-icons/fa6";
 import WhyChooseBookCourier from "../components/Homepage/WhyChooseBookCourier";
 import BookDropExpress from "../components/Homepage/BookDropExpress";
 import FeaturedAuthors from "../components/Homepage/FeaturedAuthors";
-import { IoLocationOutline } from "react-icons/io5";
+
 import CoverageSection from "../components/Homepage/CoverageSection";
 
 export default function HomePage() {

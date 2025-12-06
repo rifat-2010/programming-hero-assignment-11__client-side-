@@ -4,7 +4,7 @@ const FeaturedAuthors = () => {
     return (
         <div>
              <section class="py-20 bg-gradient-to-b from-white to-primary/5">
-    <div class="container mx-auto px-6">
+    <div class="container mx-auto px-6 md:w-11/12">
         <div class="text-center mb-16">
             <span class="text-primary font-medium text-sm uppercase tracking-wider">Meet The Visionaries</span>
             <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-2">

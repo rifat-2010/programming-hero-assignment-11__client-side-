@@ -5,7 +5,7 @@ const WhyChooseBookCourier = () => {
     return (
         <div>
             <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-6 md:w-11/12">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Why Choose <span class="text-primary">BookDrop Express</span>?</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Discover the difference that makes us the preferred choice for book lovers nationwide</p>

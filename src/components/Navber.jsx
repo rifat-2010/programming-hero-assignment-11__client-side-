@@ -45,7 +45,7 @@ const handleSignout = () => {
   return (
      
   <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-300">
-    <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+    <div className="max-w-7xl mx-auto px-3 md:px-6 py-3 flex items-center justify-between">
 
       {/* Left side logo */}
       <div className="flex items-center gap-3">
@@ -67,7 +67,7 @@ const handleSignout = () => {
       </ul>
 
       {/* Right side Theme + User */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center md:gap-4 gap-2 mx-1">
         
         {/* Theme toggle */}
         {theme === "dark" 

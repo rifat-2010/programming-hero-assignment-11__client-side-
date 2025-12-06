@@ -1,9 +1,11 @@
+import { Globe2 } from 'lucide-react';
 import React from 'react';
+import { IoLocationOutline } from 'react-icons/io5';
 
 const CoverageSection = () => {
     return (
         <div>
-               <section class="py-20 bg-gradient-to-br from-indigo-50 to-blue-50">
+    <section class="py-20 bg-gradient-to-br from-indigo-50 to-blue-50">
   <div class="container mx-auto px-6 max-w-7xl">
     <div class="grid lg:grid-cols-2 gap-12 items-center">
       <div class="space-y-6">

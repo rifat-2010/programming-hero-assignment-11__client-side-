@@ -19,7 +19,7 @@ const BookDropExpress = () => {
     </section>
 
     <section class="py-16 bg-gradient-to-r from-primary/10 to-secondary/10">
-<div class="container mx-auto px-6">
+<div class="container mx-auto px-6 md:w-11/12">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div class="transition-all duration-500 transform hover:scale-105">
                     <p class="font-bold text-4xl md:text-5xl font-mono text-primary animate-pulse">1M+</p>
