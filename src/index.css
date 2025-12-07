@@ -12,3 +12,20 @@
   text-white font-semibold border-none hover:scale-105 transition-transform
   duration-200;
 }
+
+.common-btn {
+  @apply  w-full 
+  bg-orange-500 
+  hover:bg-orange-600
+  text-white 
+  font-bold 
+  py-4 
+  px-8 
+  rounded-xl
+  shadow-md
+  hover:shadow-xl
+  transition-all
+  duration-300
+  active:scale-95
+  cursor-pointer
+}

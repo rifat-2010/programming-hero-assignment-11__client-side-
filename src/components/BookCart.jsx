@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const BookCart = ({book}) => {
     return (
@@ -37,9 +38,11 @@ const BookCart = ({book}) => {
 
               {/* View Details Button */}
               <div className="flex justify-start">
-                <button className="bg-blue-600 dark:bg-blue-500 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-300 w-full cursor-pointer">
+                <Link
+                to={`/book-details_page/${book._id}`}
+                className="bg-blue-600 dark:bg-blue-500 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-300 w-full cursor-pointer">
                   View Details
-                </button>
+                </Link>
               </div>
             </div>
           </div>

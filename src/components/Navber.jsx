@@ -44,7 +44,7 @@ const handleSignout = () => {
 
   return (
      
-  <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-300">
+  <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-300">
     <div className="max-w-7xl mx-auto px-3 md:px-6 py-3 flex items-center justify-between">
 
       {/* Left side logo */}

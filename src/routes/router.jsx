@@ -8,6 +8,7 @@ import Dashboard from "../pages/Dashboard";
 import ErrorPage from "../pages/ErrorPage";
 import Loading from "../components/Loading";
 import HomePage from "../pages/HomePage";
+import BookDetailsPage from "../pages/BookDetailsPage";
 
 
 export const router = createBrowserRouter([
@@ -25,6 +26,16 @@ export const router = createBrowserRouter([
         path: "/books-page",
         element: <Books />,
         loader: () => fetch('http://localhost:3000/books')
+      },
+        {
+        path: "/book-details_page/:id",
+        element: (
+            <BookDetailsPage />
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `http://localhost:3000/books/${params.id}`
+          ),
       },
       {
         path: "/dashboard-page",
