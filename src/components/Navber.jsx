@@ -68,19 +68,22 @@ const handleSignout = () => {
 
       {/* Right side Theme + User */}
       <div className="flex items-center md:gap-4 gap-2 mx-1">
-        
-        {/* Theme toggle */}
-        {theme === "dark" 
-          ? <MdDarkMode className="text-gray-900" size={26}/> 
-          : <MdLightMode className="text-gray-900" size={26}/>
-        }
 
-        <input
-          onChange={(e) => handleTheme(e.target.checked)}
-          type="checkbox"
-          defaultChecked={localStorage.getItem("theme") === "dark"}
-          className="toggle"
-        />
+
+  {/* toogle button */}
+  <button
+     onClick={() => handleTheme(theme === "light")}
+     className="w-10 h-10 cursor-pointer flex items-center justify-center"
+  >
+    {theme === "light" ? (
+        <MdLightMode size={30} className="text-black transition-all duration-300" />
+          ) : (
+        <MdDarkMode size={30} className="text-white transition-all duration-300" />
+    )}
+  </button>
+
+
+
 
         {/* Loading spinner */}
         {loading ? (
