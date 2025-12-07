@@ -19,8 +19,8 @@
   hover:bg-orange-600
   text-white 
   font-bold 
-  py-4 
-  px-8 
+  py-3
+  px-8
   rounded-xl
   shadow-md
   hover:shadow-xl
@@ -28,4 +28,5 @@
   duration-300
   active:scale-95
   cursor-pointer
+  text-center
 }

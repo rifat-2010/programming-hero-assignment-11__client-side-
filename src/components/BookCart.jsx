@@ -40,7 +40,7 @@ const BookCart = ({book}) => {
               <div className="flex justify-start">
                 <Link
                 to={`/book-details_page/${book._id}`}
-                className="bg-blue-600 dark:bg-blue-500 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-300 w-full cursor-pointer">
+                className="common-btn">
                   View Details
                 </Link>
               </div>

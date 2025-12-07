@@ -102,7 +102,7 @@ const BookDetailsPage = () => {
               </div>
 
               {/* Order Now Button */}
-              <button className="common-btn">
+              <button className="common-btn ">
                     Order Now
                 </button>
 
