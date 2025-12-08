@@ -3,9 +3,10 @@ import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
 import { Link, useNavigate} from "react-router";
 import { auth } from "../firebase/firebase.config";
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
-import { AuthContext } from "../context/AuthContext";
+// import { AuthContext } from "../context/AuthContext";
+import { saveOrUpdateUser } from "../utils";
 
 const googlePovider = new GoogleAuthProvider();
 
@@ -16,66 +17,82 @@ const SignUp = () => {
 
 
 
-  const handleSignup = (e) => {
-    e.preventDefault();
-    const email = e.target.email?.value;
-    const password = e.target.password?.value;
-    const displayName = e.target.name?.value;
-    const photoURL = e.target.photo?.value;
-        // console.log({ email, password, displayName, photoURL });
+const handleSignup = async (e) => {
+  e.preventDefault();
 
+  const email = e.target.email?.value;
+  const password = e.target.password?.value;
+  const name = e.target.name?.value;
+  const imageURL = e.target.photo?.value;
 
-  // Regex for validation: at least 1 uppercase, 1 lowercase, min length 6
-const regExp = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+  // Password Validation
+  const regExp = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+  if (!regExp.test(password)) {
+    toast.error(
+      "Password must be at least 6 characters long and include at least one uppercase and one lowercase letter"
+    );
+    return;
+  }
 
-if (!regExp.test(password)) {
-  toast.error(
-    "Password must be at least 6 characters long and include at least one uppercase and one lowercase letter"
-  );
-  return;
+  try {
+    // 1. Create User in Firebase
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+
+    // 2. Update Profile (Firebase)
+    await updateProfile(res.user, {
+      displayName: name,
+      photoURL: imageURL,
+    });
+
+    // 3. Save or Update User in Your Database
+    await saveOrUpdateUser({
+      name,
+      email,
+      image: imageURL,
+    });
+
+    // 4. Success
+    toast.success("Signup successful");
+
+    // 5. Auto Login থাকবে → সরাসরি Navigate করো
+    Navigate("/");
+
+  } catch (err) {
+    toast.error(err.message);
+  }
 };
 
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((res) => {
-        updateProfile(res.user, {
-          displayName, 
-          photoURL,
-        })
-           .then(() => {
-                // console.log(res);
-      
-        signOut(auth)
-            .then(() => {
-         
-              toast.success("Signup successful");
-                    // setUser(null);
-                    Navigate('/signIn-page');
-            })
-    })
-    .catch((err) => {
-      toast.error(err.message);
-    });
-    
-      })
-      .catch((e) => {
-        toast.error(e.message);
-      });
-  };
-
 
 // GoogleSignIn function
-const handleGoogleSignIn = () => {
-  signInWithPopup(auth, googlePovider)
-   .then(() => {
-      // setUser(null); 
-      toast.success("GoogleSignIn successful");
-      Navigate('/');
-    })
-    .catch((err) => {
-      toast.error(err.message);
+const handleGoogleSignIn = async () => {
+  try {
+    // 1. Google Popup Login
+    const result = await signInWithPopup(auth, googlePovider);
+
+    // 2. User info from Google
+    const user = result.user;
+    const name = user.displayName;
+    const email = user.email;
+    const imageURL = user.photoURL;
+
+    // 3. Save or Update User in Your Database
+    await saveOrUpdateUser({
+      name,
+      email,
+      image: imageURL,
     });
-}
+
+    // 4. Success
+    toast.success("Google Sign-in successful");
+    Navigate("/");
+
+  } catch (err) {
+    toast.error(err.message);
+  }
+};
+
+
 
 
   return (
