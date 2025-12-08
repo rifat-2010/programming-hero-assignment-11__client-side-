@@ -6,14 +6,20 @@ import BookDropExpress from "../components/Homepage/BookDropExpress";
 import FeaturedAuthors from "../components/Homepage/FeaturedAuthors";
 
 import CoverageSection from "../components/Homepage/CoverageSection";
+import { Link, useLoaderData } from "react-router";
+import BookCart from "../components/BookCart";
 
 export default function HomePage() {
+
+  const data = useLoaderData();
+  console.log(data)
+
   return (
     <div className="min-h-screen bg-background font-body">
 
 
       {/* Hero Banner Slider Section */}
-      <section className="pt-28 pb-20 bg-gradient-to-b from-secondary/50 to-background">
+      <section className="pt-28 pb-20 bg-linear-to-b from-secondary/50 to-background">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12 animate-fade-in-up">
             <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
@@ -95,99 +101,31 @@ export default function HomePage() {
       </section>
 
       {/* Latest Books Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
-            <div>
-              <span className="text-primary font-medium text-sm uppercase tracking-wider">Fresh Arrivals</span>
-              <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mt-2">Latest Books</h2>
-            </div>
-            <a href="#" className="mt-4 md:mt-0 inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all">
-              View All Books <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
+ {/* Latest Books Section */}
+<section className="py-20 bg-background">
+  <div className="w-11/12 mx-auto">
+    <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div>
+        <span className="text-primary font-medium text-sm uppercase tracking-wider">Fresh Arrivals</span>
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mt-2">Latest Books</h2>
+        <p className="text-muted-foreground mt-2 max-w-md">Discover our newest collection of books, handpicked just for your reading journey.</p>
+      </div>
+      <Link to={'/books-page'} className="mt-4 md:mt-0 inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all underline underline-offset-4">
+        View All Books <ArrowRight className="h-4 w-4" />
+      </Link>
+    </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {/* Book 1 */}
-            <div className="group">
-              <div className="aspect-[2/3] rounded-xl overflow-hidden shadow-soft mb-4 bg-secondary">
-                <img
-                  src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&q=80"
-                  alt="The Midnight Library"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+       <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    {data.map((book) => (
+              <div
+                key={book._id}
+              >
+                <BookCart book={book}/>
               </div>
-              <h4 className="font-display font-semibold text-foreground group-hover:text-primary transition-colors">The Midnight Library</h4>
-              <p className="text-sm text-muted-foreground">Matt Haig</p>
-            </div>
-
-            {/* Book 2 */}
-            <div className="group">
-              <div className="aspect-[2/3] rounded-xl overflow-hidden shadow-soft mb-4 bg-secondary">
-                <img
-                  src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&q=80"
-                  alt="Where the Crawdads Sing"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <h4 className="font-display font-semibold text-foreground group-hover:text-primary transition-colors">Where the Crawdads Sing</h4>
-              <p className="text-sm text-muted-foreground">Delia Owens</p>
-            </div>
-
-            {/* Book 3 */}
-            <div className="group">
-              <div className="aspect-[2/3] rounded-xl overflow-hidden shadow-soft mb-4 bg-secondary">
-                <img
-                  src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&q=80"
-                  alt="Atomic Habits"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <h4 className="font-display font-semibold text-foreground group-hover:text-primary transition-colors">Atomic Habits</h4>
-              <p className="text-sm text-muted-foreground">James Clear</p>
-            </div>
-
-            {/* Book 4 */}
-            <div className="group">
-              <div className="aspect-[2/3] rounded-xl overflow-hidden shadow-soft mb-4 bg-secondary">
-                <img
-                  src="https://images.unsplash.com/photo-1589998059171-988d887df646?w=400&q=80"
-                  alt="The Silent Patient"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <h4 className="font-display font-semibold text-foreground group-hover:text-primary transition-colors">The Silent Patient</h4>
-              <p className="text-sm text-muted-foreground">Alex Michaelides</p>
-            </div>
-
-            {/* Book 5 */}
-            <div className="group">
-              <div className="aspect-[2/3] rounded-xl overflow-hidden shadow-soft mb-4 bg-secondary">
-                <img
-                  src="https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=400&q=80"
-                  alt="Educated"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <h4 className="font-display font-semibold text-foreground group-hover:text-primary transition-colors">Educated</h4>
-              <p className="text-sm text-muted-foreground">Tara Westover</p>
-            </div>
-
-            {/* Book 6 */}
-            <div className="group">
-              <div className="aspect-[2/3] rounded-xl overflow-hidden shadow-soft mb-4 bg-secondary">
-                <img
-                  src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400&q=80"
-                  alt="Project Hail Mary"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <h4 className="font-display font-semibold text-foreground group-hover:text-primary transition-colors">Project Hail Mary</h4>
-              <p className="text-sm text-muted-foreground">Andy Weir</p>
-            </div>
-          </div>
-        </div>
-      </section>
+            ))}
+     </div>
+  </div>
+</section>
 
       {/* Coverage Section */}
     <CoverageSection></CoverageSection>
