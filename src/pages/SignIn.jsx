@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import { AuthContext } from "../context/AuthContext";
+import { saveOrUpdateUser } from "../utils";
 
 
 
@@ -24,44 +25,70 @@ const SignIn = () => {
   const emailRefHuk = useRef(null)
 
 
-  // SignIn function
-  const handleSignin = (e) => {
-    e.preventDefault();
-    const email = e.target.email?.value;
-    const password = e.target.password?.value;
-    // console.log({ email, password });
+// SignIn function
+const handleSignin = async (e) => {
+  e.preventDefault();
 
+  const email = e.target.email?.value;
+  const password = e.target.password?.value;
+
+  if (!email || !password) {
+    toast.error("Please enter both email and password");
+    return;
+  }
+
+  try {
+    // 1. Sign in with Firebase
+    const res = await signInWithEmailAndPassword(auth, email, password);
+
+    // 2. Set user state
+    setUser(res.user); // যদি তোমার context বা state আছে
+
+
+    // 3. Success message
+    toast.success("Login successful");
     
-    signInWithEmailAndPassword(auth, email, password)
-      .then((res) => {
-        // console.log(res);
-        setUser(res.user)
-        toast.success("Signup successful");
-        navigate(from);
-      })
-      .catch((e) => {
-        toast.error(e.message);
-      });
-  };
+    // 4. Navigate to intended page
+    navigate(from);
+
+  } catch (err) {
+    // 5. Error handling
+    toast.error(err.message);
+  }
+};
+
 
 
 
 
 
 // GoogleSignIn function
-const handleGoogleSignIn = () => {
-  signInWithPopup(auth, googlePovider)
-   .then((res) => {
-      // setUser(null); 
-      setUser(res.user)
-      toast.success("GoogleSignIn successful");
-      navigate(from);
-    })
-    .catch((err) => {
-      toast.error(err.message);
-    });
-}
+const handleGoogleSignIn = async () => {
+  try {
+    // 1. Google Popup Login
+    const result = await signInWithPopup(auth, googlePovider);
 
+    // 2. User info from Google
+    const user = result.user;
+    const name = user.displayName;
+    const email = user.email;
+    const imageURL = user.photoURL;
+
+    // 3. Save or Update User in Your Database
+    await saveOrUpdateUser({
+      name,
+      email,
+      image: imageURL,
+    });
+
+    // 4. Success
+    toast.success("Google Sign-in successful");
+    navigate(from);
+
+  } catch (err) {
+    toast.error(err.message);
+  }
+};
 
 
 

@@ -54,7 +54,6 @@ const handleSignup = async (e) => {
     // 4. Success
     toast.success("Signup successful");
 
-    // 5. Auto Login থাকবে → সরাসরি Navigate করো
     Navigate("/");
 
   } catch (err) {
