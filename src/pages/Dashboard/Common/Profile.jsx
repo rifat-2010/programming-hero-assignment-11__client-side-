@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import { useEffect, useState } from 'react';
+import useRole from '../../../hooks/useRole';
 
 const Profile = () => {
   const { user } = useAuth();
+  const [role, isRoleLoading] = useRole();
+  console.log(role, isRoleLoading)
   const [mongoUser, setMongoUser] = useState(null);
 
   useEffect(() => {
@@ -20,7 +23,7 @@ const Profile = () => {
   }, [user]);
 
   if (!mongoUser) {
-    return <p className="text-center mt-20">Loading...</p>;
+    return <div>Loading Role...</div>;;
   }
 
   return (

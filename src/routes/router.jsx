@@ -86,6 +86,14 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      // {
+      //   path: 'add-plant',
+      //   element: (
+      //     <PrivateRoute>
+      //       <AddPlant />
+      //     </PrivateRoute>
+      //   ),
+      // },
       {
         path: 'my-inventory',
         element: (

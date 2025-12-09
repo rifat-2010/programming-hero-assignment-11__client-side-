@@ -48,6 +48,66 @@ const handleSignout = () => {
   <nav data-aos="zoom-in-down" className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-300">
     <div className="max-w-7xl mx-auto px-3 md:px-6 py-3 flex items-center justify-between">
 
+
+{/* Mobile Menu Button */}
+<div className="dropdown lg:hidden">
+  <div
+    tabIndex={0}
+    role="button"
+    className="btn btn-ghost btn-circle"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-7 w-7 text-gray-800"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M4 6h16M4 12h16M4 18h16"
+      />
+    </svg>
+  </div>
+
+  <ul
+    id="navUl"
+    tabIndex={0}
+    className="menu menu-sm dropdown-content bg-white rounded-xl mt-3 w-64 p-5 shadow-xl space-y-3"
+  >
+    <li>
+      <NavLink
+        className="text-gray-700 hover:bg-purple-100 rounded-lg py-3 px-2 text-lg font-medium block"
+        to={"/"}
+      >
+        Home
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink
+        className="text-gray-700 hover:bg-purple-100 rounded-lg py-3 px-2 text-lg font-medium block"
+        to={"/books-page"}
+      >
+        Books
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink
+        className="text-gray-700 hover:bg-purple-100 rounded-lg py-3 px-2 text-lg font-medium block"
+        to={"/dashboard"}
+      >
+        Dashboard
+      </NavLink>
+    </li>
+  </ul>
+</div>
+
+
+
       {/* Left side logo */}
       <div className="flex items-center gap-3">
         <img src={logo} alt="logo" className="w-[45px] h-[45px] object-contain" />
@@ -132,42 +192,7 @@ const handleSignout = () => {
         )}
       </div>
 
-      {/* Mobile Menu Button */}
-      <div className="dropdown lg:hidden">
-        <div
-          tabIndex={0}
-          role="button"
-          className="btn btn-ghost btn-circle"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7 text-gray-900"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </div>
 
-        <ul
-          id="navUl"
-          tabIndex={0}
-          className="menu menu-sm dropdown-content bg-white rounded-lg mt-3 w-52 p-3 shadow-lg"
-        >
-        <li>
-          <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/"}>Home</NavLink>
-        </li>
-        <li>
-          <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/books-page"}>Books</NavLink>
-        </li>
-        <li>
-          <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/dashboard"}>Dashboard</NavLink>
-        </li>
-        </ul>
-      </div>
 
     </div>
   </nav>
