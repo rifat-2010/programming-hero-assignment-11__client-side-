@@ -2,7 +2,7 @@ import React from 'react';
 
 const FeaturedAuthors = () => {
     return (
-        <div>
+        <div data-aos="fade-up">
              <section class="py-20 bg-gradient-to-b from-white to-primary/5">
     <div class="container mx-auto px-6 md:w-11/12">
         <div class="text-center mb-16">

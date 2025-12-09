@@ -12,7 +12,7 @@ const JoinCommunitySection = () => {
   };
 
   return (
-<section className="w-11/12 mx-auto py-20">
+<section data-aos="fade-up" className="w-11/12 mx-auto py-20">
   <div
     className="relative rounded-3xl overflow-hidden bg-gradient-to-tr from-purple-50 to-indigo-100 dark:from-slate-800 dark:to-slate-900"
   >

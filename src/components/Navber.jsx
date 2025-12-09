@@ -44,7 +44,7 @@ const handleSignout = () => {
 
   return (
      
-  <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-300">
+  <nav data-aos="zoom-in-down" className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-300">
     <div className="max-w-7xl mx-auto px-3 md:px-6 py-3 flex items-center justify-between">
 
       {/* Left side logo */}
@@ -62,7 +62,7 @@ const handleSignout = () => {
           <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/books-page"}>Books</NavLink>
         </li>
         <li>
-          <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/dashboard-page"}>Dashboard</NavLink>
+          <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/dashboard"}>Dashboard</NavLink>
         </li>
       </ul>
 

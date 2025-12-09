@@ -9,6 +9,14 @@ import ErrorPage from "../pages/ErrorPage";
 import Loading from "../components/Loading";
 import HomePage from "../pages/HomePage";
 import BookDetailsPage from "../pages/BookDetailsPage";
+import PrivateRoute from "../privateRoute/PrivateRoute";
+import MyOrders from "../pages/Dashboard/Customer/MyOrders";
+import Profile from "../pages/Dashboard/Common/Profile";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import MyInventory from "../pages/Dashboard/Seller/MyInventory";
+import Statistics from "../pages/Dashboard/Common/Statistics";
+import DashboardLayout from "../layouts/DashboardLayout";
+import ManageOrders from "../pages/Dashboard/Seller/ManageOrders";
 
 
 export const router = createBrowserRouter([
@@ -68,4 +76,61 @@ export const router = createBrowserRouter([
   //   ],
   // },
 
-]);
+
+
+  {
+    path: '/dashboard',
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: (
+          <PrivateRoute>
+            <Statistics />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'my-inventory',
+        element: (
+          <PrivateRoute>
+            <MyInventory />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'manage-users',
+        element: (
+          <PrivateRoute>
+            <ManageUsers />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'profile',
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'my-orders',
+        element: (
+          <PrivateRoute>
+            <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'manage-orders',
+        element: <ManageOrders />,
+      },
+
+    ],
+  },
+])

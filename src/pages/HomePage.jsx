@@ -19,7 +19,7 @@ export default function HomePage() {
 
 
       {/* Hero Banner Slider Section */}
-      <section className="pt-28 pb-20 bg-linear-to-b from-secondary/50 to-background">
+      <section  data-aos="fade-up" className="pt-28 pb-20 bg-linear-to-b from-secondary/50 to-background">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12 animate-fade-in-up">
             <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
@@ -101,8 +101,7 @@ export default function HomePage() {
       </section>
 
       {/* Latest Books Section */}
- {/* Latest Books Section */}
-<section className="py-20 bg-background">
+    <section data-aos="fade-up" className="py-20 bg-background">
   <div className="w-11/12 mx-auto">
     <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
       <div>
@@ -125,7 +124,7 @@ export default function HomePage() {
             ))}
      </div>
   </div>
-</section>
+    </section>
 
       {/* Coverage Section */}
     <CoverageSection></CoverageSection>

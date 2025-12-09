@@ -12,7 +12,7 @@ const BookDetailsPage = () => {
         {/* Back Link */}
         <div className="mb-8">
           <Link
-            to={'/'}
+            to={'/books-page'}
             className="text-blue-600 hover:text-blue-800 font-medium text-sm"
           >
             ← Back to Books
@@ -88,7 +88,7 @@ const BookDetailsPage = () => {
               </div>
 
               {/* Published Date */}
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 p-4 border-2 border-orange-400 rounded-xl hover:rounded-3xl">
                 <p className="text-sm text-gray-600 uppercase tracking-wide mb-1">
                   Published Date
                 </p>
@@ -125,7 +125,7 @@ const BookDetailsPage = () => {
               Customer Reviews
             </h2>
             {book.reviews && book.reviews.length > 0 ? (
-              <div className="space-y-4 hover:border-2 border-orange-400 hover:rounded-3xl">
+              <div className="space-y-4 border-2 border-orange-400 rounded-xl hover:rounded-3xl">
                 {book.reviews.map((review, index) => (
                   <div
                     key={index}

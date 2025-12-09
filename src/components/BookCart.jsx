@@ -1,55 +1,66 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const BookCart = ({book}) => {
-    return (
-        <div>
-          <div
-            key={book.id}
-            className="bg-white rounded-xl shadow-md overflow-hidden group hover:shadow-xl transition-shadow duration-300"
-          >
-            {/* Book Image */}
-            <div className="overflow-hidden h-64 w-full bg-gray-100 rounded-t-xl">
-              <img
-                src={book.image}
-                alt={book.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+const BookCart = ({ book }) => {
+  return (
+    <Link
+      to={`/book-details_page/${book._id}`}
+      className="block"
+      data-aos="zoom-in"
+    >
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:-translate-y-1 hover:shadow-2xl cursor-pointer group">
+
+        {/* Image */}
+        <div className="relative h-64 overflow-hidden">
+          <img
+            src={book.image}
+            alt={book.title}
+            className="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+          />
+
+          {/* Floating Badge */}
+          <span className="absolute top-3 left-3 bg-blue-600 text-white text-xs px-3 py-1 rounded-full shadow">
+            {book.status}
+          </span>
+        </div>
+
+        {/* Content */}
+        <div className="p-5">
+
+          {/* Title */}
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 transition">
+            {book.title}
+          </h3>
+
+          {/* Author */}
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+            by {book.author}
+          </p>
+
+          {/* Short Description */}
+          <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-3 mb-4">
+            {book.description}
+          </p>
+
+          {/* Extra Info Row */}
+          <div className="flex justify-between items-center text-sm text-gray-700 dark:text-gray-300">
+
+            {/* Rating */}
+            <div className="flex items-center">
+              <span className="text-yellow-500 text-lg mr-1">★</span>
+              <span>{book.rating}</span>
             </div>
 
-            {/* Book Info */}
-            <div className="p-4">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 duration-300">
-                {book.title}
-              </h3>
-              <p className="text-sm text-gray-500 mb-2">{book.author}</p>
-              <p className="text-sm text-gray-70 mb-4">
-                {book.description}
-              </p>
-
-              {/* Rating */}
-              <div className="flex items-center mb-3">
-                <span className="text-yellow-500 mr-1">★</span>
-                <span className="text-gray-900 font-medium">{book.rating}</span>
-                <span className="text-gray-500 ml-2">
-                  ({book.reviews.length} reviews)
-                </span>
-              </div>
-
-              {/* View Details Button */}
-              <div className="flex justify-start">
-                <Link
-                to={`/book-details_page/${book._id}`}
-                className="common-btn">
-                  View Details
-                </Link>
-              </div>
-            </div>
+            {/* Price or Category */}
+            <span className="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+              {book.category || "Novel"}
+            </span>
           </div>
-     
-    </div>
-        
-    );
+        </div>
+
+      </div>
+    </Link>
+  );
 };
 
 export default BookCart;

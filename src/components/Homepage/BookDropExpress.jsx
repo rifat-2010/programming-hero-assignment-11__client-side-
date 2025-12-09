@@ -2,7 +2,7 @@ import React from 'react';
 
 const BookDropExpress = () => {
     return (
-        <div>
+        <div data-aos="fade-up">
                       <section class="py-20 px-6 bg-white text-center">
         <div class="max-w-4xl mx-auto">
             <h1 class="text-4xl md:text-5xl font-bold text-primary mb-6">📚 BookDrop Express</h1>
