@@ -17,6 +17,7 @@ import MyInventory from "../pages/Dashboard/Seller/MyInventory";
 import Statistics from "../pages/Dashboard/Common/Statistics";
 import DashboardLayout from "../layouts/DashboardLayout";
 import ManageOrders from "../pages/Dashboard/Seller/ManageOrders";
+import UpdateUser from "../pages/UpdateUser";
 
 
 export const router = createBrowserRouter([
@@ -59,22 +60,30 @@ export const router = createBrowserRouter([
 
   { path: "/signIn-page", element: <SignIn /> },
   { path: "/signUp-page", element: <SignUp />},
+//   {
+//   path: "/update-user/:id",
+//   element: <UpdateUser />, // standalone page like SignUp
+//   loader: ({ params }) =>
+//     fetch(`http://localhost:3000/users/${params.id}`).then(res => res.json())
+// },
+{
+  path: "/update-user/:id", // standalone absolute path
+  element: <UpdateUser />,
+  loader: ({ params }) =>
+    fetch(`http://localhost:3000/users/${params.id}`).then(res => res.json())
+},
+      // {
+      //   path: "Updated-user-info/:id", // <-- leading slash বাদ দাও
+      //   element: (
+      //     <PrivateRoute>
+      //       <UpdateUser />
+      //     </PrivateRoute>
+      //   ),
+      //   loader: ({ params }) =>
+      //     fetch(`http://localhost:3000/users/${params.id}`).then(res => res.json())
+      // },
 
 
-
-  //  {
-  //   path: "/dashboard-page",
-  //   element: <DashboardLayout></DashboardLayout>,
-  //   errorElement: <ErrorPage />,
-  //   hydrateFallbackElement: <Loading></Loading>,
-  //   children: [
-  //     {
-  //       index: true,
-  //       element: <App />,
-  //     },
-
-  //   ],
-  // },
 
 
 
@@ -130,7 +139,22 @@ export const router = createBrowserRouter([
         path: 'manage-orders',
         element: <ManageOrders />,
       },
+      // {
+      //   path: "Updated-user-info/:id", // <-- leading slash বাদ দাও
+      //   element: (
+      //     <PrivateRoute>
+      //       <UpdateUser />
+      //     </PrivateRoute>
+      //   ),
+      //   loader: ({ params }) =>
+      //     fetch(`http://localhost:3000/users/${params.id}`).then(res => res.json())
+      // }
+
+
 
     ],
   },
 ])
+
+
+

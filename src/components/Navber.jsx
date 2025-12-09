@@ -156,9 +156,15 @@ const handleSignout = () => {
           tabIndex={0}
           className="menu menu-sm dropdown-content bg-white rounded-lg mt-3 w-52 p-3 shadow-lg"
         >
-          <li><NavLink to={"/"}>Home</NavLink></li>
-          <li><NavLink to={"/books-page"}>Books</NavLink></li>
-          <li><NavLink to={"/dashboard-page"}>Dashboard</NavLink></li>
+        <li>
+          <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/"}>Home</NavLink>
+        </li>
+        <li>
+          <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/books-page"}>Books</NavLink>
+        </li>
+        <li>
+          <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/dashboard"}>Dashboard</NavLink>
+        </li>
         </ul>
       </div>
 
