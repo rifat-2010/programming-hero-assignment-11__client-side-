@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, {  useRef, useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
 import { Link, Navigate, NavLink, useLocation, useNavigate } from "react-router";
@@ -7,6 +7,7 @@ import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 
 import { auth } from "../firebase/firebase.config";
 import { AuthContext } from "../context/AuthContext";
 import { saveOrUpdateUser } from "../utils";
+import useAuth from "../hooks/useAuth";
 
 
 
@@ -16,7 +17,7 @@ const googlePovider = new GoogleAuthProvider();
 
 const SignIn = () => {
   const [show, setShow] = useState(false);
-  const { setUser } = useContext(AuthContext) || {};
+  const { setUser } = useAuth() || {};
 // console.log(user)
   const location = useLocation();
   const from = location.state || '/';

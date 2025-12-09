@@ -84,16 +84,17 @@ const UpdateUser = () => {
           </div>
 
           <div>
-            <label className="label font-medium">Email</label>
-            <input
-              type="email"
+        <label className="label font-medium">Email</label>
+             <input
+             type="email"
               name="email"
               defaultValue={userInfo.email || ""}
               placeholder="Enter email"
-              className="input w-full rounded-full border p-2"
-              required
-            />
-          </div>
+              className="input w-full rounded-full border p-2 bg-gray-100 cursor-not-allowed"
+              readOnly
+              />
+         </div>
+
 
           <div>
             <label className="label font-medium">Photo URL</label>

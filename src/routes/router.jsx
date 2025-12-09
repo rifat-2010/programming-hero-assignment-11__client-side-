@@ -60,29 +60,12 @@ export const router = createBrowserRouter([
 
   { path: "/signIn-page", element: <SignIn /> },
   { path: "/signUp-page", element: <SignUp />},
-//   {
-//   path: "/update-user/:id",
-//   element: <UpdateUser />, // standalone page like SignUp
-//   loader: ({ params }) =>
-//     fetch(`http://localhost:3000/users/${params.id}`).then(res => res.json())
-// },
-{
+  {
   path: "/update-user/:id", // standalone absolute path
   element: <UpdateUser />,
   loader: ({ params }) =>
     fetch(`http://localhost:3000/users/${params.id}`).then(res => res.json())
-},
-      // {
-      //   path: "Updated-user-info/:id", // <-- leading slash বাদ দাও
-      //   element: (
-      //     <PrivateRoute>
-      //       <UpdateUser />
-      //     </PrivateRoute>
-      //   ),
-      //   loader: ({ params }) =>
-      //     fetch(`http://localhost:3000/users/${params.id}`).then(res => res.json())
-      // },
-
+  },
 
 
 
@@ -139,16 +122,6 @@ export const router = createBrowserRouter([
         path: 'manage-orders',
         element: <ManageOrders />,
       },
-      // {
-      //   path: "Updated-user-info/:id", // <-- leading slash বাদ দাও
-      //   element: (
-      //     <PrivateRoute>
-      //       <UpdateUser />
-      //     </PrivateRoute>
-      //   ),
-      //   loader: ({ params }) =>
-      //     fetch(`http://localhost:3000/users/${params.id}`).then(res => res.json())
-      // }
 
 
 

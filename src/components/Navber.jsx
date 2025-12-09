@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { toast } from "react-toastify";
 import { signOut } from "firebase/auth";
@@ -7,11 +7,12 @@ import { AuthContext } from "../context/AuthContext";
 import { auth } from "../firebase/firebase.config";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import logo from '../assets/project-logo.png'
+import useAuth from "../hooks/useAuth";
 
 
 
 const Navbar = () => {
-const {user, setUser, loading} = useContext(AuthContext);
+const {user, setUser, loading} = useAuth();
 // console.log(loading, user);
 
 

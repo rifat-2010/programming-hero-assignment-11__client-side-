@@ -1,5 +1,5 @@
 const SellerStatistics = () => {
-  return <div>Seller Statistics Page</div>
+  return <div>Librarian Statistics Page</div>
 }
 
 export default SellerStatistics
