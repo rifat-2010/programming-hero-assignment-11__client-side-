@@ -18,6 +18,7 @@ import Statistics from "../pages/Dashboard/Common/Statistics";
 import DashboardLayout from "../layouts/DashboardLayout";
 import ManageOrders from "../pages/Dashboard/Seller/ManageOrders";
 import UpdateUser from "../pages/UpdateUser";
+import AddPlant from "../pages/Dashboard/Seller/AddPlant";
 
 
 export const router = createBrowserRouter([
@@ -86,14 +87,14 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      // {
-      //   path: 'add-plant',
-      //   element: (
-      //     <PrivateRoute>
-      //       <AddPlant />
-      //     </PrivateRoute>
-      //   ),
-      // },
+      {
+        path: 'add-book',
+        element: (
+          <PrivateRoute>
+            <AddPlant />
+          </PrivateRoute>
+        ),
+      },
       {
         path: 'my-inventory',
         element: (

@@ -26,9 +26,7 @@ const UpdateUser = () => {
     };
 
     try {
-      // ==========================
       // 1) Firebase profile update
-      // ==========================
       await updateProfile(auth.currentUser, {
         displayName: updatedName,
         photoURL: updatedImage,
@@ -40,9 +38,8 @@ const UpdateUser = () => {
         photoURL: updatedImage,
       });
 
-      // ==========================
+
       // 2) MongoDB Profile Update
-      // ==========================
       const response = await fetch(
         `http://localhost:3000/users/${userInfo._id}`,
         {
@@ -110,7 +107,7 @@ const UpdateUser = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-full hover:bg-blue-800 transition"
+            className="common-btn"
           >
             Update User
           </button>

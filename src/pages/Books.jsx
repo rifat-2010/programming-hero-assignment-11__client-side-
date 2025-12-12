@@ -11,17 +11,14 @@ const Books = () => {
 //   console.log(data);
 const [books, setBooks] = useState([]);
 const [search, setSearch] = useState("");
-const [loading, setLoading] = useState(false);
 
 // Fetch books from server
 const loadBooks = async (query) => {
   console.log(query)
-  setLoading(true);
   const res = await fetch(`http://localhost:3000/search?search=${query}`);
   const data = await res.json();
   // console.log(data);
   setBooks(data);
-  setLoading(false);
 };
 
 

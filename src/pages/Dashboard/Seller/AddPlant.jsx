@@ -1,10 +1,10 @@
-import AddPlantForm from '../../../components/Form/AddPlantForm'
+import AddBookCart from '../../../components/Form/AddBookCart'
 
 const AddPlant = () => {
   return (
     <div>
       {/* Form */}
-      <AddPlantForm />
+      <AddBookCart />
     </div>
   )
 }
