@@ -39,21 +39,26 @@ const handleSignin = async (e) => {
   }
 
   try {
-    // 1. Sign in with Firebase
+    // 1. Firebase sign in
     const res = await signInWithEmailAndPassword(auth, email, password);
 
     // 2. Set user state
-    setUser(res.user); // যদি তোমার context বা state আছে
+    setUser(res.user);
 
+    // 3. Save or update user in your database
+    await saveOrUpdateUser({
+      name: res.user.displayName || "Unknown User",
+      email: res.user.email,
+      image: res.user.photoURL || null,
+    });
 
-    // 3. Success message
+    // 4. Success message
     toast.success("Login successful");
-    
-    // 4. Navigate to intended page
+
+    // 5. Redirect
     navigate(from);
 
   } catch (err) {
-    // 5. Error handling
     toast.error(err.message);
   }
 };

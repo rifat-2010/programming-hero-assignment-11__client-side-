@@ -11,13 +11,14 @@ const axiosInstance = axios.create({
 const useAxiosSecure = () => {
   const { user, logOut, loading } = useAuth()
   const navigate = useNavigate()
+  console.log(user)
 
   useEffect(() => {
     if (!loading && user?.accessToken) {
       // Add request interceptor
       const requestInterceptor = axiosInstance.interceptors.request.use(
         config => {
-          config.headers.Authorization = `Bearer ${user.accessToken}`
+          config.headers.authorization = `Bearer ${user.accessToken}`
           return config
         }
       )

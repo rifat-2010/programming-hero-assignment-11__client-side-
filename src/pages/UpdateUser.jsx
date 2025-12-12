@@ -4,9 +4,11 @@ import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const UpdateUser = () => {
   const data = useLoaderData(); 
+  const axiosSecure = useAxiosSecure();
   const { user, setUser } = useAuth();
   const navigate = useNavigate();
 
@@ -40,14 +42,10 @@ const UpdateUser = () => {
 
 
       // 2) MongoDB Profile Update
-      const response = await fetch(
-        `http://localhost:3000/users/${userInfo._id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await axiosSecure.put(
+      `http://localhost:3000/users/${userInfo._id}`,
+      JSON.stringify(formData)
+    );
 
       const result = await response.json();
 
