@@ -1,126 +1,98 @@
-import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
-import { useState } from 'react'
-import useAuth from '../../hooks/useAuth'
+import React, { useState} from 'react';
+import axios from 'axios';
+import { toast } from "react-toastify";
 
-const PurchaseModal = ({ closeModal, isOpen }) => {
-  const { user } = useAuth()
 
-  const [phone, setPhone] = useState("")
-  const [address, setAddress] = useState("")
+const PurchaseModal = ({ isOpen, onClose, book, user}) => {
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
 
-  const handleOrder = () => {
+  // Phone number validation (only digits, 10–15 characters)
+  const phoneRegex = /^[0-9]{10,15}$/;
+
+  const handlePlaceOrder = async () => {
+    phone 
     if (!phone || !address) {
-      alert("Please fill all fields")
-      return
+      alert("Phone & Address are required!");
+      return;
     }
 
-    const orderData = {
-      name: user?.displayName,
-      email: user?.email,
-      phone,
-      address,
-      time: new Date()
-    }
-
-    console.log("ORDER:", orderData)
-    closeModal()
+  if (!phoneRegex.test(phone)) {
+    alert("Please enter a valid phone number (10-15 digits)");
+    return;
   }
 
+    const orderData = {
+      userId: user.uid,
+      bookId: book._id,
+      name: user.displayName,
+      email: user.email,
+      phone,
+      address,
+      orderDate: new Date(),
+      status: 'pending',
+      paymentStatus: 'unpaid'
+    };
+
+    try {
+      const res = await axios.post('http://localhost:3000/orders', orderData);
+      if (res.data.success) {
+         toast.success("Order placed successfully!");
+        setPhone('');
+        setAddress('');
+        onClose();
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to place order!");
+    }
+  };
+
+  if (!isOpen) return null;
+
   return (
-    <Dialog
-      open={isOpen}
-      as='div'
-      className='relative z-10 focus:outline-none'
-      onClose={closeModal}
+    <div
+      className="absolute bg-white border rounded-lg shadow-lg p-4 w-80 z-50"
+      
     >
-      <div className='fixed inset-0 z-10 w-screen overflow-y-auto'>
-        <div className='flex min-h-full items-center justify-center p-4'>
-          <DialogPanel
-            transition
-            className='w-full max-w-md bg-white p-6 backdrop-blur-2xl duration-300 ease-out 
-            data-closed:transform-[scale(95%)] data-closed:opacity-0 shadow-xl rounded-2xl'
-          >
-            <DialogTitle
-              as='h3'
-              className='text-lg font-medium text-center leading-6 text-gray-900'
-            >
-              Review Info Before Purchase
-            </DialogTitle>
+      <h3 className="text-lg font-semibold mb-2 text-center">Review Info Before Purchase</h3>
 
-            {/* Name */}
-            <div className='mt-3'>
-              <p className='text-sm text-gray-600 font-semibold'>Name</p>
-              <input
-                type="text"
-                value={user?.displayName || "Unknown User"}
-                readOnly
-                className='w-full mt-1 p-2 border bg-gray-100 rounded-md'
-              />
-            </div>
+      <p className="text-sm">Book: {book.title}</p>
+      <p className="text-sm">Category: {book.category}</p>
+      <p className="text-sm">Customer: {user?.displayName}</p>
+      <p className="text-sm">Price: $ {book.price}</p>
 
-            {/* Email */}
-            <div className='mt-3'>
-              <p className='text-sm text-gray-600 font-semibold'>Email</p>
-              <input
-                type="email"
-                value={user?.email || "Unknown Email"}
-                readOnly
-                className='w-full mt-1 p-2 border bg-gray-100 rounded-md'
-              />
-            </div>
+      <input
+        type="text"
+        placeholder="Phone Number"
+        value={phone}
+        onChange={e => setPhone(e.target.value)}
+        className="border p-2 rounded w-full mt-2"
+      />
+      <input
+        type="text"
+        placeholder="Address"
+        value={address}
+        onChange={e => setAddress(e.target.value)}
+        className="border p-2 rounded w-full mt-2"
+      />
 
-            {/* Phone Number */}
-            <div className='mt-3'>
-              <p className='text-sm text-gray-600 font-semibold'>Phone Number</p>
-              <input
-                type="text"
-                placeholder='Enter phone number'
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className='w-full mt-1 p-2 border rounded-md'
-              />
-            </div>
-
-            {/* Address */}
-            <div className='mt-3'>
-              <p className='text-sm text-gray-600 font-semibold'>Address</p>
-              <textarea
-                placeholder='Enter your address'
-                rows={3}
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                className='w-full mt-1 p-2 border rounded-md'
-              ></textarea>
-            </div>
-
-            {/* Buttons */}
-            <div className='flex mt-5 justify-around'>
-              <button
-                onClick={handleOrder}
-                type='button'
-                className='cursor-pointer inline-flex justify-center rounded-md 
-                bg-green-100 px-4 py-2 text-sm font-medium text-green-900 
-                hover:bg-green-200 focus:outline-none'
-              >
-                Place Order
-              </button>
-
-              <button
-                type='button'
-                className='cursor-pointer inline-flex justify-center rounded-md 
-                bg-red-100 px-4 py-2 text-sm font-medium text-red-900 
-                hover:bg-red-200 focus:outline-none'
-                onClick={closeModal}
-              >
-                Cancel
-              </button>
-            </div>
-
-          </DialogPanel>
-        </div>
+      <div className="flex justify-between mt-3">
+        <button
+          onClick={handlePlaceOrder}
+          className="bg-green-100 text-green-800 px-3 py-1 rounded hover:bg-green-200"
+        >
+          Place Order
+        </button>
+        <button
+          onClick={onClose}
+          className="bg-red-100 text-red-800 px-3 py-1 rounded hover:bg-red-200"
+        >
+          Cancel
+        </button>
       </div>
-    </Dialog>
-  )
-}
+    </div>
+  );
+};
 
-export default PurchaseModal
+export default PurchaseModal;

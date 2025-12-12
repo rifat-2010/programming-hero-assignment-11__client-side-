@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { Link, useLoaderData } from "react-router";
 import PurchaseModal from "../components/Modal/PurchaseModal";
+import useAuth from "../hooks/useAuth";
 
 const BookDetailsPage = () => {
+  const {user} = useAuth();
   const data = useLoaderData();
   const [book] = useState(data.result);
   const [isOpen, setIsOpen] = useState(false)
@@ -118,10 +120,12 @@ const BookDetailsPage = () => {
               </button>
 
               <PurchaseModal
-              book={book}
-              closeModal={closeModal}
-              isOpen={isOpen}
-            />
+                book={book}
+                user={user}
+                isOpen={isOpen}
+                onClose={closeModal}
+              />
+
 
             </div>
           </div>
