@@ -1,10 +1,18 @@
 import React from "react";
 import { useState } from "react";
 import { Link, useLoaderData } from "react-router";
+import PurchaseModal from "../components/Modal/PurchaseModal";
 
 const BookDetailsPage = () => {
   const data = useLoaderData();
   const [book] = useState(data.result);
+  const [isOpen, setIsOpen] = useState(false)
+
+
+  const closeModal = () => {
+  setIsOpen(false)
+}
+
 
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
@@ -102,9 +110,18 @@ const BookDetailsPage = () => {
               </div>
 
               {/* Order Now Button */}
-              <button className="common-btn ">
-                    Order Now
-                </button>
+              <button 
+              className="common-btn" 
+                onClick={() => setIsOpen(true)}
+              >
+                Order Now
+              </button>
+
+              <PurchaseModal
+              book={book}
+              closeModal={closeModal}
+              isOpen={isOpen}
+            />
 
             </div>
           </div>
