@@ -1,70 +1,82 @@
-import CustomerOrderDataRow from '../../../components/Dashboard/TableRows/CustomerOrderDataRow'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import useAuth from "../../../hooks/useAuth";
 
 const MyOrders = () => {
+  const {user} = useAuth();
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    if (!user?.email) return;
+
+    axios
+      .get(`http://localhost:3000/orders?email=${user.email}`)
+      .then(res => {
+        if (res.data.success) {
+          setOrders(res.data.orders);
+        }
+      })
+      .catch(err => console.error(err));
+  }, [user.email]);
+
+  const handleCancel = async (id) => {
+    try {
+      await axios.patch(`http://localhost:3000/orders/cancel/${id}`);
+      setOrders(orders.map(order =>
+        order._id === id ? { ...order, status: "cancelled" } : order
+      ));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
-    <>
-      <div className='container mx-auto px-4 sm:px-8'>
-        <div className='py-8'>
-          <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
-            <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>
-              <table className='min-w-full leading-normal'>
-                <thead>
-                  <tr>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      Image
-                    </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      Name
-                    </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      Category
-                    </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      Price
-                    </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      Quantity
-                    </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      Status
-                    </th>
+    <div className="w-11/12 mx-auto mt-6">
+      <h2 className="text-xl font-semibold mb-4">My Orders</h2>
 
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <CustomerOrderDataRow />
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  )
-}
+      <table className="w-full border">
+        <thead className="bg-gray-100">
+          <tr>
+            <th className="border p-2">Book</th>
+            <th className="border p-2">Order Date</th>
+            <th className="border p-2">Status</th>
+            <th className="border p-2">Actions</th>
+          </tr>
+        </thead>
 
-export default MyOrders
+        <tbody>
+          {orders.map(order => (
+            <tr key={order._id}>
+              <td className="border p-2">{order.bookId}</td>
+              <td className="border p-2">
+                {new Date(order.orderDate).toLocaleDateString()}
+              </td>
+              <td className="border p-2 capitalize">{order.status}</td>
+              <td className="border p-2 space-x-2">
+                {order.status === "pending" && (
+                  <>
+                    <button
+                      onClick={() => handleCancel(order._id)}
+                      className="bg-red-100 px-2 py-1 rounded"
+                    >
+                      Cancel
+                    </button>
+
+                    <button
+                      onClick={() => alert("Payment page later")}
+                      className="bg-green-100 px-2 py-1 rounded"
+                    >
+                      Pay Now
+                    </button>
+                  </>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default MyOrders;
