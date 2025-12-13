@@ -13,8 +13,8 @@ const PaymentSuccess = () => {
     }
   }, [sessionId])
   return (
-    <div className='flex flex-col items-center justify-center'>
-      <div className='bg-white p-10 rounded-lg shadow-lg text-center'>
+    <div className='flex flex-col items-center justify-center my-30 '>
+      <div className='bg-white p-10 rounded-lg shadow-lg text-center border hover:border-4 hover:border-amber-600'>
         <IoBagCheckOutline className='w-16 h-16 text-green-500 mx-auto mb-4' />
         <h1 className='text-3xl font-bold text-gray-800 mb-2'>
           Payment Successful!
