@@ -19,6 +19,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import ManageOrders from "../pages/Dashboard/Seller/ManageOrders";
 import UpdateUser from "../pages/UpdateUser";
 import AddPlant from "../pages/Dashboard/Seller/AddPlant";
+import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 
 
 export const router = createBrowserRouter([
@@ -41,7 +42,7 @@ export const router = createBrowserRouter([
         element: <Books />,
         loader: () => fetch('http://localhost:3000/books')
       },
-        {
+      {
         path: "/book-details_page/:id",
         element: (
             <BookDetailsPage />
@@ -50,6 +51,12 @@ export const router = createBrowserRouter([
           fetch(
             `http://localhost:3000/books/${params.id}`
           ),
+      },
+      {
+        path: "/payment-success",
+        element: (
+            <PaymentSuccess />
+        ),
       },
       {
         path: "/dashboard-page",

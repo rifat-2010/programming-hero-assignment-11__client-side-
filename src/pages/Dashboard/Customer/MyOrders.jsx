@@ -5,6 +5,7 @@ import useAuth from "../../../hooks/useAuth";
 const MyOrders = () => {
   const {user} = useAuth();
   const [orders, setOrders] = useState([]);
+  // console.log(orders);
 
   useEffect(() => {
     if (!user?.email) return;
@@ -29,6 +30,47 @@ const MyOrders = () => {
       console.error(err);
     }
   };
+
+
+
+
+// console.log(user.photoURL)
+
+  // // for payment function 
+  const handlePayment = async (order) => {
+    console.log(order)
+  const paymentInfo = {
+    orderId: order._id,
+    // amount: order.price || 1,
+    quantity: 1,
+    purpose: "book-order",
+
+    customer: {
+      name: order.name,
+      email: order.email,
+      phone: order.phone,
+      address: order.address,
+    },
+
+    bookInfo: {
+      bookId: order.bookId,
+      orderDate: order.orderDate,
+      price: order.Price,
+    },
+  };
+
+  console.log("Payment Payload:", paymentInfo);
+
+  const result = await axios.post(
+    `http://localhost:3000/create-checkout-session`,
+    paymentInfo
+  )
+  console.log(result);
+  window.location.href = result.data.url
+};
+
+
+
 
   return (
     <div className="w-11/12 mx-auto mt-6">
@@ -57,14 +99,15 @@ const MyOrders = () => {
                   <>
                     <button
                       onClick={() => handleCancel(order._id)}
-                      className="bg-red-100 px-2 py-1 rounded"
+                      className="bg-red-100 px-2 py-1 rounded cursor-pointer"
                     >
                       Cancel
                     </button>
 
                     <button
-                      onClick={() => alert("Payment page later")}
-                      className="bg-green-100 px-2 py-1 rounded"
+                      // onClick={() => alert("Payment page later")}
+                      onClick={() => handlePayment(order)}
+                      className="bg-green-100 px-2 py-1 rounded cursor-pointer"
                     >
                       Pay Now
                     </button>

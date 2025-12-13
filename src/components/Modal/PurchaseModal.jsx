@@ -1,11 +1,13 @@
 import React, { useState} from 'react';
 import axios from 'axios';
 import { toast } from "react-toastify";
+import { useNavigate } from 'react-router';
 
 
 const PurchaseModal = ({ isOpen, onClose, book, user}) => {
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
+  const navigate = useNavigate();
 
   // Phone number validation (only digits, 10–15 characters)
   const phoneRegex = /^[0-9]{10,15}$/;
@@ -28,6 +30,7 @@ const PurchaseModal = ({ isOpen, onClose, book, user}) => {
       name: user.displayName,
       email: user.email,
       phone,
+      price: book.price,
       address,
       orderDate: new Date(),
       status: 'pending',
@@ -35,9 +38,12 @@ const PurchaseModal = ({ isOpen, onClose, book, user}) => {
     };
 
     try {
-      const res = await axios.post('http://localhost:3000/orders', orderData);
-      if (res.data.success) {
+      const data = await axios.post('http://localhost:3000/orders', orderData);
+      console.log(data)
+      if (data.success) {
+        // window.location.href = data.url
          toast.success("Order placed successfully!");
+         navigate('/dashboard/my-orders')
         setPhone('');
         setAddress('');
         onClose();
@@ -80,13 +86,13 @@ const PurchaseModal = ({ isOpen, onClose, book, user}) => {
       <div className="flex justify-between mt-3">
         <button
           onClick={handlePlaceOrder}
-          className="bg-green-100 text-green-800 px-3 py-1 rounded hover:bg-green-200"
+          className="cursor-pointer bg-green-100 text-green-800 px-3 py-1 rounded hover:bg-green-200"
         >
           Place Order
         </button>
         <button
           onClick={onClose}
-          className="bg-red-100 text-red-800 px-3 py-1 rounded hover:bg-red-200"
+          className="cursor-pointer bg-red-100 text-red-800 px-3 py-1 rounded hover:bg-red-200"
         >
           Cancel
         </button>
