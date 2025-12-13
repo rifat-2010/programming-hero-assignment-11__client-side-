@@ -13,7 +13,6 @@ const PurchaseModal = ({ isOpen, onClose, book, user}) => {
   const phoneRegex = /^[0-9]{10,15}$/;
 
   const handlePlaceOrder = async () => {
-    phone 
     if (!phone || !address) {
       alert("Phone & Address are required!");
       return;
@@ -38,16 +37,17 @@ const PurchaseModal = ({ isOpen, onClose, book, user}) => {
     };
 
     try {
-      const data = await axios.post('http://localhost:3000/orders', orderData);
-      console.log(data)
-      if (data.success) {
-        // window.location.href = data.url
-         toast.success("Order placed successfully!");
-         navigate('/dashboard/my-orders')
-        setPhone('');
-        setAddress('');
-        onClose();
-      }
+    const res = await axios.post('http://localhost:3000/orders', orderData);
+    console.log(res.data);
+
+    if (res.data.success) {
+      toast.success("Order placed successfully!");
+      navigate('/dashboard/my-orders');
+      setPhone('');
+      setAddress('');
+      onClose();
+    }
+
     } catch (err) {
       console.error(err);
       toast.error("Failed to place order!");

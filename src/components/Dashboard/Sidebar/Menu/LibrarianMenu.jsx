@@ -1,7 +1,7 @@
 import { BsFillHouseAddFill } from "react-icons/bs";
 import { MdHomeWork, MdOutlineManageHistory } from "react-icons/md";
 import MenuItem from "./MenuItem";
-const SellerMenu = () => {
+const LibrarianMenu = () => {
   return (
     <>
       <MenuItem icon={BsFillHouseAddFill} label="Add Book" address="add-book" />
@@ -15,4 +15,4 @@ const SellerMenu = () => {
   );
 };
 
-export default SellerMenu;
+export default LibrarianMenu;

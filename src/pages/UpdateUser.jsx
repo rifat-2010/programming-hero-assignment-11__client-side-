@@ -1,10 +1,12 @@
 import React from "react";
-import { useLoaderData, useNavigate } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { IoMdArrowRoundBack } from "react-icons/io";
+
 
 const UpdateUser = () => {
   const data = useLoaderData(); 
@@ -64,7 +66,12 @@ const UpdateUser = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-md bg-white p-6 rounded-xl shadow-lg">
         <h2 className="text-2xl font-bold text-center mb-6">Update User</h2>
-
+        <Link to={'/dashboard'}
+            type="submit"
+            className="w-45 bg-blue-600 text-white p-2 rounded-2xl flex justify-center items-center cursor-pointer mb-3"
+          >
+           <IoMdArrowRoundBack className="mt-1"/>---- Back Dashboard
+          </Link>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="label font-medium">Name</label>
