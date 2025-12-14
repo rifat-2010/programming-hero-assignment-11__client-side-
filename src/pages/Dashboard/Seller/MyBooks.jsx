@@ -5,12 +5,13 @@ import { Link } from 'react-router';
 
 
 
+
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-
-
+  
+  
   useEffect(() => {
     if (user?.email) {
       fetch(`http://localhost:3000/my-books?email=${user.email}`)
@@ -50,14 +51,14 @@ const MyOrders = () => {
             {orders.map((order) => (
               <tr key={order._id} className="border-b hover:bg-gray-50">
                 <td className="px-5 py-4 text-sm">
-                  <img src={order.BookImg || "https://png.pngtree.com/png-clipart/20250103/original/pngtree-playful-cartoon-book-graphics-for-teachers-and-designers-png-image_19982551.png"} alt={order.BookName} className="w-30 h-15" />
+                  <img src={order.image || "https://png.pngtree.com/png-clipart/20250103/original/pngtree-playful-cartoon-book-graphics-for-teachers-and-designers-png-image_19982551.png"} alt={order.BookName} className="w-30 h-15" />
                 </td>
                 <td className="px-5 py-4 text-sm">
-                  {order.BookName || order.bookId}
+                  {order.title || order.bookId}
                 </td>
 
-                <td className="px-5 py-4 font-medium">
-                  ${order.Price}
+                <td className="px-5 py-4 font-medium text-black">
+                  ${order.price}
                 </td>
                 <td className="px-5 py-4 font-medium">
                   {order.status}
@@ -66,7 +67,7 @@ const MyOrders = () => {
 
 
                 <td className="px-5 py-4 text-sm">
-                  {new Date(order.orderDate).toLocaleDateString()}
+                  {new Date(order.publishedDate).toLocaleDateString()}
                 </td>
 
 

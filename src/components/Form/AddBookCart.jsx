@@ -19,7 +19,7 @@ const AddBookPage = () => {
       image: form.image.value,
       publishedDate: form.publishedDate.value,
       rating: parseFloat(form.rating.value) || 0,
-      reviews: [], // নতুন বই হলে খালি
+      reviews: [],
     };
 
     fetch("http://localhost:3000/books", {
