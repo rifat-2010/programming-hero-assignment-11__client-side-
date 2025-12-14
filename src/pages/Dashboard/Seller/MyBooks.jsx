@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import Loading from "../../../components/Loading";
-import { toast } from "react-toastify";
 import { Link } from 'react-router';
 
 
@@ -25,26 +24,13 @@ const MyOrders = () => {
   }, [user]);
 
 
-    // unpublish handler
-  const handleUnpublish = (id) => {
-    fetch(`http://localhost:3000/books/unpublish/${id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
-          toast.success("Book unpublished");
-        }
-      });
-  };
-
 
   if (loading) return <Loading />;
 
   return (
     <div className="container mx-auto px-4 sm:px-8 py-8">
       <h1 className="text-2xl font-bold mb-6 text-center">
-        My Orders
+        My Books
       </h1>
 
       <div className="overflow-x-auto shadow rounded-lg">
@@ -54,6 +40,7 @@ const MyOrders = () => {
               <th className="px-5 py-3 text-left">Book Img</th>
               <th className="px-5 py-3 text-left">Book Name</th>
               <th className="px-5 py-3 text-left">Price</th>
+              <th className="px-5 py-3 text-left">Status</th>
               <th className="px-5 py-3 text-left">Order Date</th>
               <th className="px-5 py-3 text-left">Action</th>
             </tr>
@@ -72,6 +59,9 @@ const MyOrders = () => {
                 <td className="px-5 py-4 font-medium">
                   ${order.Price}
                 </td>
+                <td className="px-5 py-4 font-medium">
+                  {order.status}
+                </td>
 
 
 
@@ -83,20 +73,12 @@ const MyOrders = () => {
 
                   <td className="px-5 py-4 space-x-2">
                     <Link
-                      to={`/dashboard/update-book/${order._id}`}
+                      to={`/update-order-book/${order._id}`}
                       className="px-3 py-1 bg-blue-500 text-white rounded text-sm"
                     >
                       Edit
                     </Link>
 
-                    {order.status === "published" && (
-                      <button
-                        onClick={() => handleUnpublish(order._id)}
-                        className="px-3 py-1 bg-orange-500 text-white rounded text-sm"
-                      >
-                        Unpublish
-                      </button>
-                    )}
                   </td>
               </tr>
             ))}

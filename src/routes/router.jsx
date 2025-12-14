@@ -18,6 +18,7 @@ import Statistics from "../pages/Dashboard/Common/Statistics";
 import DashboardLayout from "../layouts/DashboardLayout";
 import ManageOrders from "../pages/Dashboard/Seller/ManageOrders";
 import UpdateUser from "../pages/UpdateUser";
+import UpdateBook from "../pages/UpdateBook";
 import AddPlant from "../pages/Dashboard/Seller/AddPlant";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 
@@ -62,6 +63,14 @@ export const router = createBrowserRouter([
     element: <UpdateUser />,
     loader: ({ params }) =>
       fetch(`http://localhost:3000/users/${params.id}`).then((res) =>
+        res.json()
+      ),
+  },
+  {
+    path: "/update-order-book/:id",
+    element: <UpdateBook/>,
+    loader: ({ params }) =>
+      fetch(`http://localhost:3000/order-book/${params.id}`).then((res) =>
         res.json()
       ),
   },
