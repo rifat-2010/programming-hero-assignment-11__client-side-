@@ -79,7 +79,7 @@ const MyOrders = () => {
       <table className="w-full border">
         <thead className="bg-gray-100">
           <tr>
-            <th className="border p-2">Book ID</th>
+            <th className="border p-2">Book Name</th>
             <th className="border p-2">Book Price</th>
             <th className="border p-2">Order Date</th>
             <th className="border p-2">Status</th>
@@ -90,7 +90,7 @@ const MyOrders = () => {
         <tbody>
           {orders.map(order => (
             <tr key={order._id}>
-              <td className="border p-2">{order.bookId}</td>
+              <td className="border p-2">{order.BookName}</td>
               <td className="border p-2">{order.Price}</td>
               <td className="border p-2">
                 {new Date(order.orderDate).toLocaleDateString()}

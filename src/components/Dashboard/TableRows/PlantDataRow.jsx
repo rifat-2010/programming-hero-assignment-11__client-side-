@@ -3,15 +3,9 @@ import DeleteModal from '../../Modal/DeleteModal'
 import UpdatePlantModal from '../../Modal/UpdatePlantModal'
 
 const PlantDataRow = () => {
-  let [isOpen, setIsOpen] = useState(false)
+  // let [isOpen, setIsOpen] = useState(false)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
 
-  function openModal() {
-    setIsOpen(true)
-  }
-  function closeModal() {
-    setIsOpen(false)
-  }
 
   return (
     <tr>
@@ -41,19 +35,6 @@ const PlantDataRow = () => {
         <p className='text-gray-900 '>5</p>
       </td>
 
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <span
-          onClick={openModal}
-          className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
-        >
-          <span
-            aria-hidden='true'
-            className='absolute inset-0 bg-red-200 opacity-50 rounded-full'
-          ></span>
-          <span className='relative'>Delete</span>
-        </span>
-        <DeleteModal isOpen={isOpen} closeModal={closeModal} />
-      </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <span
           onClick={() => setIsEditModalOpen(true)}

@@ -85,12 +85,12 @@ const Sidebar = () => {
             {/*  Menu Items */}
             <nav>
               {/* Common Menu */}
+              {role === "user" && 
               <MenuItem
                 icon={BsGraphUp}
                 label="Invoices"
                 address="/dashboard"
-              />
-              {/* Role-Based Menu */}
+              />}
               {/* Role-Based Menu */}
               {role === "user" && <UserMenu />}
               {role === "librarian" && <LibrarianMenu />}
@@ -102,11 +102,13 @@ const Sidebar = () => {
           <div>
             <hr />
 
+           {role === "user || admin" && 
             <MenuItem
               icon={FcSettings}
               label="Profile"
               address="/dashboard/profile"
             />
+           }
             <button
               onClick={logOut}
               className="flex cursor-pointer w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"

@@ -110,7 +110,6 @@ const AddBookPage = () => {
               >
                 <option value="published">Published</option>
                 <option value="unpublished">Unpublished</option>
-                <option value="pending">Pending</option>
               </select>
             </div>
 

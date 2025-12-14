@@ -30,6 +30,8 @@ const PurchaseModal = ({ isOpen, onClose, book, user}) => {
       email: user.email,
       phone,
       price: book.price,
+      BookName: book.title,
+      BookImg: book.image,
       address,
       orderDate: new Date(),
       status: 'pending',

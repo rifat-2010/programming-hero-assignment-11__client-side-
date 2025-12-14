@@ -13,14 +13,13 @@ import PrivateRoute from "../privateRoute/PrivateRoute";
 import MyOrders from "../pages/Dashboard/Customer/MyOrders";
 import Profile from "../pages/Dashboard/Common/Profile";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
-import MyInventory from "../pages/Dashboard/Seller/MyInventory";
+import MyBooks from "../pages/Dashboard/Seller/MyBooks";
 import Statistics from "../pages/Dashboard/Common/Statistics";
 import DashboardLayout from "../layouts/DashboardLayout";
 import ManageOrders from "../pages/Dashboard/Seller/ManageOrders";
 import UpdateUser from "../pages/UpdateUser";
 import AddPlant from "../pages/Dashboard/Seller/AddPlant";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess";
-
 
 export const router = createBrowserRouter([
   {
@@ -31,32 +30,23 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage/>,
-        loader: () =>
-          fetch(
-            "http://localhost:3000/latest-books"
-          ),
+        element: <HomePage />,
+        loader: () => fetch("http://localhost:3000/latest-books"),
       },
       {
         path: "/books-page",
         element: <Books />,
-        loader: () => fetch('http://localhost:3000/books')
+        loader: () => fetch("http://localhost:3000/books"),
       },
       {
         path: "/book-details_page/:id",
-        element: (
-            <BookDetailsPage />
-        ),
+        element: <BookDetailsPage />,
         loader: ({ params }) =>
-          fetch(
-            `http://localhost:3000/books/${params.id}`
-          ),
+          fetch(`http://localhost:3000/books/${params.id}`),
       },
       {
         path: "/payment-success",
-        element: (
-            <PaymentSuccess />
-        ),
+        element: <PaymentSuccess />,
       },
       {
         path: "/dashboard-page",
@@ -65,21 +55,19 @@ export const router = createBrowserRouter([
     ],
   },
 
-
   { path: "/signIn-page", element: <SignIn /> },
-  { path: "/signUp-page", element: <SignUp />},
+  { path: "/signUp-page", element: <SignUp /> },
   {
-  path: "/update-user/:id", // standalone absolute path
-  element: <UpdateUser />,
-  loader: ({ params }) =>
-    fetch(`http://localhost:3000/users/${params.id}`).then(res => res.json())
+    path: "/update-user/:id",
+    element: <UpdateUser />,
+    loader: ({ params }) =>
+      fetch(`http://localhost:3000/users/${params.id}`).then((res) =>
+        res.json()
+      ),
   },
 
-
-
-
   {
-    path: '/dashboard',
+    path: "/dashboard",
     element: (
       <PrivateRoute>
         <DashboardLayout />
@@ -95,7 +83,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'add-book',
+        path: "add-book",
         element: (
           <PrivateRoute>
             <AddPlant />
@@ -103,15 +91,15 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'my-inventory',
+        path: "my-books",
         element: (
           <PrivateRoute>
-            <MyInventory />
+            <MyBooks />
           </PrivateRoute>
         ),
       },
       {
-        path: 'manage-users',
+        path: "manage-users",
         element: (
           <PrivateRoute>
             <ManageUsers />
@@ -119,7 +107,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'profile',
+        path: "profile",
         element: (
           <PrivateRoute>
             <Profile />
@@ -127,7 +115,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'my-orders',
+        path: "my-orders",
         element: (
           <PrivateRoute>
             <MyOrders />
@@ -135,15 +123,9 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'manage-orders',
+        path: "manage-orders",
         element: <ManageOrders />,
       },
-
-
-
     ],
   },
-])
-
-
-
+]);
