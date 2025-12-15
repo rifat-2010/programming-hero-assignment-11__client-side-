@@ -6,12 +6,15 @@ import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import { MdAddToPhotos } from "react-icons/md";
 import { toast } from "react-toastify";
+import ReviewForm from "../components/ReviewForm";
+
 
 
 const BookDetailsPage = () => {
   const {user} = useAuth();
   const data = useLoaderData();
-  const [book] = useState(data.result);
+  // const [book] = useState(data.result);
+  const [book, setBook] = useState(data.result);
   const [isOpen, setIsOpen] = useState(false)
 
 
@@ -192,18 +195,19 @@ const handleAddWishlist = async () => {
               Customer Reviews
             </h2>
             {book.reviews && book.reviews.length > 0 ? (
-              <div className="space-y-4 border-2 border-orange-400 rounded-xl hover:rounded-3xl">
+              <div className="space-y-4 ">
                 {book.reviews.map((review, index) => (
-                  <div
+                 <div
                     key={index}
-                    className="bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow"
+                    className="bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow border-2 border-orange-400"
                   >
+
                     <div className="flex items-center justify-between mb-3">
                       <div>
                         <p className="font-semibold text-gray-900">
                           {review.name}
                         </p>
-                        <p className="text-sm text-gray-500">{review.userId}</p>
+                        <p className="text-sm text-gray-500">{review.userEmail}</p>
                       </div>
 
                      <div className="flex items-center">
@@ -232,6 +236,9 @@ const handleAddWishlist = async () => {
               </p>
             )}
           </div>
+          {user && 
+          <ReviewForm bookId={book._id} user={user} book={book} setBook={setBook}></ReviewForm>
+          }
         </div>
       </div>
     </div>

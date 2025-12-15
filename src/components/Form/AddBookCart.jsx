@@ -6,6 +6,7 @@ import useAuth from "../../hooks/useAuth";
 const AddBookPage = () => {
   const navigate = useNavigate();
   const {user}= useAuth()
+  console.log(user)
 
 
   const handleSubmit = (e) => {
