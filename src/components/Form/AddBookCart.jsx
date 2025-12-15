@@ -1,15 +1,19 @@
 import React from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const AddBookPage = () => {
   const navigate = useNavigate();
+  const {user}= useAuth()
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
 
     const newBook = {
+      email: user.email,
       title: form.title.value,
       author: form.author.value,
       description: form.description.value,
@@ -32,7 +36,7 @@ const AddBookPage = () => {
       .then((res) => res.json())
       .then((data) => {
         toast.success("Book added successfully!");
-        navigate("/dashboard"); // চাইলে অন্য route দিতে পারো
+        navigate("/dashboard");
         console.log(data);
       })
       .catch((err) => {

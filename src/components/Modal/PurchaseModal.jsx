@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 
 
 const PurchaseModal = ({ isOpen, onClose, book, user}) => {
+  console.log(user.email)
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const navigate = useNavigate();

@@ -4,7 +4,6 @@ import App from "../App";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import Books from "../pages/Books";
-import Dashboard from "../pages/Dashboard";
 import ErrorPage from "../pages/ErrorPage";
 import Loading from "../components/Loading";
 import HomePage from "../pages/HomePage";
@@ -48,10 +47,6 @@ export const router = createBrowserRouter([
       {
         path: "/payment-success",
         element: <PaymentSuccess />,
-      },
-      {
-        path: "/dashboard-page",
-        element: <Dashboard />,
       },
     ],
   },

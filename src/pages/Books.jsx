@@ -62,7 +62,7 @@ useEffect(() => {
 
   {/* Count Text */}
   <p className="text-xl font-semibold text-gray-800 dark:text-gray-200">
-    Total Books: {data.length}
+    Total Published Books: {data.length}
   </p>
 </div>
 

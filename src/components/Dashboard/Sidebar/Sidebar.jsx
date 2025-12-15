@@ -23,7 +23,7 @@ const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
   const [role, isRoleLoading] = useRole();
-  console.log(role, isRoleLoading);
+  // console.log(role, isRoleLoading);
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -102,7 +102,7 @@ const Sidebar = () => {
           <div>
             <hr />
 
-           {role === "user || admin" && 
+           {role === "user" || role === "admin" && 
             <MenuItem
               icon={FcSettings}
               label="Profile"
