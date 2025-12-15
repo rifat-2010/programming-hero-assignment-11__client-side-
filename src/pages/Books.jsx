@@ -64,6 +64,13 @@ useEffect(() => {
   <p className="text-xl font-semibold text-gray-800 dark:text-gray-200">
     Total Published Books: {data.length}
   </p>
+  <select
+   className="p-1 border-2 border-lime-300 focus:outline-lime-500 rounded-md text-gray-900 bg-white"
+     >
+    <option value="pending">pending</option>
+     <option value="shipped">shipped</option>
+
+   </select>
 </div>
 
             
