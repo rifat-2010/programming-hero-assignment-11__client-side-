@@ -7,18 +7,27 @@ const UserStatistics = () => {
   const [orders, setOrders] = useState([]);
   console.log(orders);
 
-  useEffect(() => {
-    if (!user?.email) return;
+useEffect(() => {
+  if (!user?.email) return;
 
-    axios
-      .get(`http://localhost:3000/orders?email=${user.email}`)
-      .then(res => {
-        if (res.data.success) {
-          setOrders(res.data.orders);
-        }
-      })
-      .catch(err => console.error(err));
-  }, [user.email]);
+  axios
+    .get(`http://localhost:3000/invoices`, {
+      params: { email: user.email }
+    })
+    .then(res => {
+      if (res.data.success) {
+        setOrders(res.data.orders);
+      } else {
+        setOrders([]);
+      }
+    })
+    .catch(err => {
+      console.error("Invoice fetch error:", err);
+      setOrders([]);
+    });
+}, [user?.email]);
+
+
 
 
   return (
@@ -102,14 +111,14 @@ const UserStatistics = () => {
   </div>
 
   {/* === 📄 My Orders (Existing Code - Remains as is) === */}
-  <h2 className="text-xl font-semibold mb-4 text-gray-800">Your All Orders</h2>
+  <h2 className="text-xl font-semibold mb-4 text-gray-800">Your All Payments Data</h2>
 
   <table className="w-full border shadow-lg rounded-md overflow-hidden">
     <thead className="bg-indigo-600 text-white">
       <tr>
         <th className="border p-3 text-left">User Name</th>
         <th className="border p-3 text-left">User Email</th>
-        <th className="border p-3 text-left">Payment ID / Book ID</th>
+        <th className="border p-3 text-left">Book Name</th>
         <th className="border p-3 text-left">Price</th>
         <th className="border p-3 text-left">Order Date</th>
       </tr>
@@ -121,7 +130,7 @@ const UserStatistics = () => {
         <tr key={order._id} className="even:bg-gray-50 hover:bg-indigo-50 transition duration-150">
           <td className="border p-2">{order.name}</td>
           <td className="border p-2">{order.email}</td>
-          <td className="border p-2 font-mono text-sm">{order.bookId}</td>
+          <td className="border p-2 font-mono text-sm">{order.BookName}</td>
           <td className="border p-2 font-bold text-green-600">${order.Price}</td>
           <td className="border p-2">
             {new Date(order.orderDate).toLocaleDateString()}
