@@ -3,6 +3,10 @@ import { useState } from "react";
 import { Link, useLoaderData } from "react-router";
 import PurchaseModal from "../components/Modal/PurchaseModal";
 import useAuth from "../hooks/useAuth";
+import axios from "axios";
+import { MdAddToPhotos } from "react-icons/md";
+import { toast } from "react-toastify";
+
 
 const BookDetailsPage = () => {
   const {user} = useAuth();
@@ -14,6 +18,37 @@ const BookDetailsPage = () => {
   const closeModal = () => {
   setIsOpen(false)
 }
+
+
+const handleAddWishlist = async () => {
+  if (!user) {
+    alert("You must be logged in to add to wishlist!");
+    return;
+  }
+
+  const wishlistData = {
+    userId: user.uid,
+    bookId: book._id,
+    email: user.email,
+    BookName: book.title,
+    BookImg: book.image,
+    price: book.price,
+  };
+
+  try {
+    const res = await axios.post("http://localhost:3000/wishlist", wishlistData);
+    if (res.data.success) {
+      toast.success("Book added to wishlist!");
+    } else {
+      toast.error(res.data.message || "Failed to add to wishlist");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Something went wrong");
+  }
+};
+
+
 
 
   return (
@@ -118,6 +153,17 @@ const BookDetailsPage = () => {
               >
                 Order Now
               </button>
+
+
+             {/* Wishlist Button */}
+              <button
+                onClick={handleAddWishlist}
+                className="flex items-center gap-2  hover:bg-blue-600 text-black hover:text-white font-semibold px-4 py-2 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer justify-center border"
+              >
+                <MdAddToPhotos />
+                Add to Wishlist
+              </button>
+
 
               <PurchaseModal
                 book={book}

@@ -20,6 +20,7 @@ import UpdateUser from "../pages/UpdateUser";
 import UpdateBook from "../pages/UpdateBook";
 import AddPlant from "../pages/Dashboard/Seller/AddPlant";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess";
+import MyWishlist from "../pages/Dashboard/Customer/MyWishlist";
 
 export const router = createBrowserRouter([
   {
@@ -123,6 +124,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-wishlist",
+        element: (
+          <PrivateRoute>
+            <MyWishlist />
           </PrivateRoute>
         ),
       },
