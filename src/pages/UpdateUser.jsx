@@ -44,12 +44,12 @@ const UpdateUser = () => {
 
 
       // 2) MongoDB Profile Update
-      const response = await axiosSecure.put(
-      `http://localhost:3000/users/${userInfo._id}`,
-      JSON.stringify(formData)
-    );
+     const response = await axiosSecure.put(
+        `/users/${userInfo._id}`,
+        formData
+      );
 
-      const result = await response.json();
+      const result = response.data;
 
       if (result.success) {
         toast.success("User updated successfully!");
