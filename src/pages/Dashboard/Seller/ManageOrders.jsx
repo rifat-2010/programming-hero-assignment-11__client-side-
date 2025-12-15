@@ -1,11 +1,20 @@
 import { useEffect, useState } from 'react'
 import SellerOrderDataRow from '../../../components/Dashboard/TableRows/SellerOrderDataRow'
+// import useAuth from '../../../hooks/useAuth'
 
 const ManageOrders = () => {
   const [books, setBooks] = useState([])
+  // const {user} = useAuth();
 
   useEffect(() => {
-    fetch('http://localhost:3000/all-books')
+    fetch('http://localhost:3000/all-books') 
+    //   {
+    //   headers:{
+    //     'Authorization': `Bearer ${user?.accessToken}`,
+    //     'Content-Type': 'application/json',
+    //   }
+    // }
+  // )
       .then(res => res.json())
       .then(data => setBooks(data))
       .catch(err => console.error(err))

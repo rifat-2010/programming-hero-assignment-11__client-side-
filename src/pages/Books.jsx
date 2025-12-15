@@ -67,8 +67,9 @@ useEffect(() => {
   <select
    className="p-1 border-2 border-lime-300 focus:outline-lime-500 rounded-md text-gray-900 bg-white"
      >
-    <option value="pending">pending</option>
-     <option value="shipped">shipped</option>
+    <option value="pending">All Books</option>
+     <option value="shipped">High -- Low</option>
+     <option value="shipped">Low -- High</option>
 
    </select>
 </div>

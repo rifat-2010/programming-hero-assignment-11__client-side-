@@ -23,6 +23,19 @@ const useAxiosSecure = () => {
         }
       )
 
+
+
+  // const useAxiosSecure = () => {
+  //   // const {user} = useAuth();
+  //   useEffect(() => {
+  //     axiosInstance.interceptors.request.use(config => {
+  //       config.headers.Authorization = `Bearer ${user.accessToken}`
+  //       return config
+  //     })
+  //   }, [user])
+  // }
+
+
       // Add response interceptor
       const responseInterceptor = axiosInstance.interceptors.response.use(
         res => res,
