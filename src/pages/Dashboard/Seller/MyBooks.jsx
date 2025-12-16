@@ -1,20 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import Loading from "../../../components/Loading";
-import { Link } from 'react-router';
-
-
-
+import { Link } from "react-router";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-  
-  
+
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/my-books?email=${user.email}`)
+      fetch(
+        `https://book-courier-server-kappa.vercel.app/my-books?email=${user.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setOrders(data);
@@ -24,15 +22,11 @@ const MyOrders = () => {
     }
   }, [user]);
 
-
-
   if (loading) return <Loading />;
 
   return (
     <div className="container mx-auto px-4 sm:px-8 py-8">
-      <h1 className="text-2xl font-bold mb-6 text-center">
-        My Books
-      </h1>
+      <h1 className="text-2xl font-bold mb-6 text-center">My Books</h1>
 
       <div className="overflow-x-auto shadow rounded-lg">
         <table className="min-w-full">
@@ -51,7 +45,14 @@ const MyOrders = () => {
             {orders.map((order) => (
               <tr key={order._id} className="border-b hover:bg-gray-50">
                 <td className="px-5 py-4 text-sm">
-                  <img src={order.image || "https://png.pngtree.com/png-clipart/20250103/original/pngtree-playful-cartoon-book-graphics-for-teachers-and-designers-png-image_19982551.png"} alt={order.BookName} className="w-30 h-15" />
+                  <img
+                    src={
+                      order.image ||
+                      "https://png.pngtree.com/png-clipart/20250103/original/pngtree-playful-cartoon-book-graphics-for-teachers-and-designers-png-image_19982551.png"
+                    }
+                    alt={order.BookName}
+                    className="w-30 h-15"
+                  />
                 </td>
                 <td className="px-5 py-4 text-sm">
                   {order.title || order.bookId}
@@ -60,27 +61,20 @@ const MyOrders = () => {
                 <td className="px-5 py-4 font-medium text-black">
                   ${order.price}
                 </td>
-                <td className="px-5 py-4 font-medium">
-                  {order.status}
-                </td>
-
-
+                <td className="px-5 py-4 font-medium">{order.status}</td>
 
                 <td className="px-5 py-4 text-sm">
                   {new Date(order.publishedDate).toLocaleDateString()}
                 </td>
 
-
-
-                  <td className="px-5 py-4 space-x-2">
-                    <Link
-                      to={`/update-order-book/${order._id}`}
-                      className="px-3 py-1 bg-blue-500 text-white rounded text-sm"
-                    >
-                      Edit
-                    </Link>
-
-                  </td>
+                <td className="px-5 py-4 space-x-2">
+                  <Link
+                    to={`/update-order-book/${order._id}`}
+                    className="px-3 py-1 bg-blue-500 text-white rounded text-sm"
+                  >
+                    Edit
+                  </Link>
+                </td>
               </tr>
             ))}
 

@@ -17,14 +17,14 @@ const UpdateBook = () => {
     const updatedStatus = e.target.status.value;
 
     const updateData = {
-      title: updatedBookName,  // সার্ভারের ডেটা অনুযায়ী
+      title: updatedBookName, // সার্ভারের ডেটা অনুযায়ী
       image: updatedBookImg,
-      status: updatedStatus
+      status: updatedStatus,
     };
 
     try {
       const res = await axiosSecure.put(
-        `http://localhost:3000/order-book/${book._id}`,
+        `https://book-courier-server-kappa.vercel.app/order-book/${book._id}`,
         updateData
       );
 
@@ -42,12 +42,10 @@ const UpdateBook = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-md bg-white p-6 rounded-xl shadow-lg">
-        <h2 className="text-2xl font-bold text-center mb-6">
-          Update Book
-        </h2>
+        <h2 className="text-2xl font-bold text-center mb-6">Update Book</h2>
 
         <Link
-          to={'/dashboard/my-books'}
+          to={"/dashboard/my-books"}
           className="w-45 bg-blue-600 text-white p-2 rounded-2xl flex justify-center items-center cursor-pointer mb-3"
         >
           <IoMdArrowRoundBack className="mt-1 mr-1" />
@@ -84,7 +82,6 @@ const UpdateBook = () => {
               defaultValue={book.status}
               className="input w-full rounded-full bbook p-2"
             >
-              <option value="pending">Pending</option>
               <option value="published">Published</option>
               <option value="unpublished">Unpublished</option>
             </select>

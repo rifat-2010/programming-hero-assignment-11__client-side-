@@ -99,105 +99,116 @@ const handleGoogleSignIn = async () => {
 
 
   return (
-    <div className="min-h-[calc(100vh-20px)] flex items-center justify-center bg-linear-to-br from-blue-500 via-indigo-600 to-purple-600 relative overflow-hidden">
-      {/* page title */}
-      <title>SignIn-Page</title>
+ <div 
+            className="min-h-screen flex items-center justify-center relative overflow-hidden p-4"
+            style={{
+                // Using a book-themed background image with a dark overlay
+                backgroundImage: "url('https://shopdemo.hasthemes.com/koparion-preview/p2/img/koparion/hero-bg.jpg')",
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundAttachment: 'fixed',
+            }}
+        >
+            {/* Dark Overlay for better contrast */}
+            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
 
-      <div className="w-full max-w-md backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8">
-       
+            <div className="w-full max-w-md relative z-10 backdrop-blur-lg bg-white/10 border border-[#f97316]/40 shadow-2xl shadow-[#f97316]/30 rounded-2xl p-8 transition-all duration-500 hover:shadow-xl">
+                
+                <h2 className="text-4xl font-extrabold mb-8 text-center text-white tracking-wider">
+                    BookCourier Login 📖
+                </h2>
+
+                <form onSubmit={handleSignin} className="space-y-6">
+                    
+                    {/* Email Input */}
+                    <div>
+                        <label className="block text-base mb-2 text-white font-medium">
+                            Email Address
+                        </label>
+                        <input
+                            type="email"
+                            name="email"
+                            ref={emailRefHuk}
+                            required
+                            placeholder="your.email@bookdrop.com"
+                            className="input input-bordered w-full bg-white/15 text-white placeholder-white/70 border-none focus:outline-none focus:ring-4 focus:ring-[#f97316] transition-all duration-200"
+                        />
+                    </div>
+
+                    {/* Password Input */}
+                    <div className="relative">
+                        <label className="block text-base mb-2 text-white font-medium">
+                            Password
+                        </label>
+                        <input
+                            type={show ? "text" : "password"}
+                            name="password"
+                            placeholder="••••••••"
+                            required
+                            className="input input-bordered w-full bg-white/15 text-white placeholder-white/70 border-none focus:outline-none focus:ring-4 focus:ring-[#f97316] transition-all duration-200"
+                        />
+                        <span
+                            onClick={() => setShow(!show)}
+                            className="absolute right-4 top-10 cursor-pointer z-20 text-white/80 hover:text-white transition-colors"
+                        >
+                            {show ? <FaEye size={20} className="text-black"/> : <IoEyeOff size={20} className="text-black"/>}
+                        </span>
+                    </div>
+
+                    {/* Forget Password */}
+                    <div className="text-right">
+                        <button
+                            className="text-sm text-pink-300 hover:text-[#f97316] underline font-medium transition-colors"
+                            type="button"
+                        >
+                            Forget password?
+                        </button>
+                    </div>
+
+                    {/* Login Button */}
+                    <button
+                        type="submit"
+                        className="common-btn"
+                    >
+                        Login to BookDrop
+                    </button>
+
+                    {/* Divider */}
+                    <div className="flex items-center justify-center gap-3 py-2">
+                        <div className="h-px flex-1 bg-white/30"></div>
+                        <span className="text-sm text-white/80">OR</span>
+                        <div className="h-px flex-1 bg-white/30"></div>
+                    </div>
+
+                    {/* Google Signin */}
+                    <button
+                        onClick={handleGoogleSignIn}
+                        type="button"
+                        className="flex items-center justify-center gap-3 bg-white text-gray-800 px-5 py-3 rounded-xl w-full font-semibold hover:bg-gray-100 transition-colors shadow-md cursor-pointer"
+                    >
+                        <img
+                            src="https://www.svgrepo.com/show/475656/google-color.svg"
+                            alt="google"
+                            className="w-5 h-5"
+                        />
+                        Continue with Google
+                    </button>
+
+                    {/* Sign up Link */}
+                    <p className="text-center text-sm text-white/80 mt-4">
+                        Don’t have an account?{" "}
+                        <Link
+                            to="/signUp-page"
+                            className="text-pink-300 hover:text-[#ffc300] underline font-semibold transition-colors cursor-pointer"
+                        >
+                            Sign up here
+                        </Link>
+                    </p>
+                </form>
 
 
-
-<form onSubmit={handleSignin} className="space-y-5">
-            <h2 className="text-2xl font-semibold mb-2 text-center text-white">
-              LogIn Page
-            </h2>
-
-            <div>
-              <label className="block text-sm mb-1 text-white font-bold text-[17px]">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                ref={emailRefHuk}
-                required
-                // value={email}
-                // onChange={(e) => setEmail(e.target.value)}
-                placeholder="example@email.com"
-                className="input input-bordered w-full bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              />
             </div>
-
-            <div className="relative">
-              <label className="block text-sm mb-1  text-white font-bold text-[17px]">
-                Password
-              </label>
-              <input
-                type={show ? "text" : "password"}
-                name="password"
-                placeholder="••••••••"
-                required
-                className="input input-bordered w-full bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              />
-              <span
-                onClick={() => setShow(!show)}
-                className="absolute right-2 top-9 cursor-pointer z-50"
-              >
-                {show ? <FaEye /> : <IoEyeOff />}
-              </span>
-            </div>
-
-            <button
-              className="hover:underline cursor-pointer hover:text-white
-                  font-semibold"
-              type="button"
-            >
-              Forget password?
-            </button>
-
-            <button
-              type="submit"
-              className="m-2 my-btn font-semibold hover:underline hover:text-white"
-            >
-              Login
-            </button>
-
-            {/* Divider */}
-            <div className="flex items-center justify-center gap-2 my-2">
-              <div className="h-px w-16 bg-white/30"></div>
-              <span className="text-sm text-white/70">or</span>
-              <div className="h-px w-16 bg-white/30"></div>
-            </div>
-
-            {/* Google Signin */}
-            <button
-            onClick={handleGoogleSignIn}
-              type="button"
-              className="flex items-center justify-center gap-3 bg-white text-gray-800 px-5 py-2 rounded-lg w-full font-semibold hover:bg-gray-100 transition-colors cursor-pointer"
-            >
-              <img
-                src="https://www.svgrepo.com/show/475656/google-color.svg"
-                alt="google"
-                className="w-5 h-5"
-              />
-              Continue with Google
-            </button>
-
-            <p className="text-center text-sm text-white/80 mt-3">
-              Don’t have an account?{" "}
-              <Link
-                to="/signUp-page"
-                className="text-pink-300 hover:text-white underline"
-              >
-                Sign up
-              </Link>
-            </p>
-      </form>
-
-
-      </div>
-    </div>
+        </div>
   );
 };
 

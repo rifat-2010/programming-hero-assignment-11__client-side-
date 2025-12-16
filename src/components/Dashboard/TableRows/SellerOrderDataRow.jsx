@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import DeleteModal from '../../Modal/DeleteModal';
-import { toast } from 'react-toastify';
+import { useState } from "react";
+import DeleteModal from "../../Modal/DeleteModal";
+import { toast } from "react-toastify";
 
 const SellerOrderDataRow = ({ book, onDelete }) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -12,23 +12,26 @@ const SellerOrderDataRow = ({ book, onDelete }) => {
   // Delete handler
   const handleDelete = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/books/${book._id}`, {
-        method: 'DELETE',
-      });
+      const res = await fetch(
+        `https://book-courier-server-kappa.vercel.app/books/${book._id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
-      if (!res.ok) throw new Error('Server error');
+      if (!res.ok) throw new Error("Server error");
 
       const data = await res.json();
 
       if (data.success && data.result.deletedCount === 1) {
-        toast.success('Book deleted successfully');
+        toast.success("Book deleted successfully");
         onDelete(book._id);
         closeModal();
       } else {
-        toast.error('Delete failed');
+        toast.error("Delete failed");
       }
     } catch (err) {
-      toast.error('Delete failed');
+      toast.error("Delete failed");
       console.error(err);
     }
   };
@@ -36,66 +39,73 @@ const SellerOrderDataRow = ({ book, onDelete }) => {
   // ✅ Update book status in database
   const handleSave = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/books/status/${book._id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status }),
-      });
+      const res = await fetch(
+        `https://book-courier-server-kappa.vercel.app/books/status/${book._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status }),
+        }
+      );
 
       const data = await res.json();
 
       if (data.success) {
-        toast.success('Book status updated successfully');
+        toast.success("Book status updated successfully");
       } else {
-        toast.error(data.message || 'Status update failed');
+        toast.error(data.message || "Status update failed");
       }
     } catch (err) {
-      toast.error('Status update failed');
+      toast.error("Status update failed");
       console.error(err);
     }
   };
 
   return (
     <tr>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900'>{book?.title}</p>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900">{book?.title}</p>
       </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900'>${book?.price}</p>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900">${book?.price}</p>
       </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900'>{book?.author}</p>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900">{book?.author}</p>
       </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900'>{status}</p>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900">{status}</p>
       </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <select
-          className='p-1 border-2 border-lime-300 rounded-md bg-white'
+          className="p-1 border-2 border-lime-300 rounded-md bg-white"
           value={status}
-          onChange={e => setStatus(e.target.value)}
+          onChange={(e) => setStatus(e.target.value)}
         >
-          <option value='published'>Published</option>
-          <option value='unpublished'>Unpublished</option>
+          <option value="published">Published</option>
+          <option value="unpublished">Unpublished</option>
         </select>
 
         <button
           onClick={handleSave}
-          className='btn bg-blue-600 hover:bg-blue-700 text-white font-semibold px-2 py-1 rounded ml-2'
+          className="btn bg-blue-600 hover:bg-blue-700 text-white font-semibold px-2 py-1 rounded ml-2"
         >
           Save
         </button>
       </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <button
           onClick={() => setIsOpen(true)}
-          className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+          className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
         >
-          <span className='absolute inset-0 bg-red-200 opacity-50 rounded-full'></span>
-          <span className='relative'>Delete</span>
+          <span className="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+          <span className="relative">Delete</span>
         </button>
 
-        <DeleteModal isOpen={isOpen} closeModal={closeModal} onConfirm={handleDelete} />
+        <DeleteModal
+          isOpen={isOpen}
+          closeModal={closeModal}
+          onConfirm={handleDelete}
+        />
       </td>
     </tr>
   );

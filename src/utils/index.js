@@ -1,12 +1,10 @@
-import axios from 'axios'
-
-
+import axios from "axios";
 
 // save or update user in db
-export const saveOrUpdateUser = async userData => {
+export const saveOrUpdateUser = async (userData) => {
   const { data } = await axios.post(
-    `http://localhost:3000/user`,
+    `https://book-courier-server-kappa.vercel.app/user`,
     userData
-  )
-  return data
-}
+  );
+  return data;
+};

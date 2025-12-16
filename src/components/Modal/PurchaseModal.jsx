@@ -1,13 +1,12 @@
-import React, { useState} from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router";
 
-
-const PurchaseModal = ({ isOpen, onClose, book, user}) => {
-  console.log(user.email)
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
+const PurchaseModal = ({ isOpen, onClose, book, user }) => {
+  // console.log(user.email)
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
   const navigate = useNavigate();
 
   // Phone number validation (only digits, 10–15 characters)
@@ -19,10 +18,10 @@ const PurchaseModal = ({ isOpen, onClose, book, user}) => {
       return;
     }
 
-  if (!phoneRegex.test(phone)) {
-    alert("Please enter a valid phone number (10-15 digits)");
-    return;
-  }
+    if (!phoneRegex.test(phone)) {
+      alert("Please enter a valid phone number (10-15 digits)");
+      return;
+    }
 
     const orderData = {
       userId: user.uid,
@@ -35,22 +34,24 @@ const PurchaseModal = ({ isOpen, onClose, book, user}) => {
       BookImg: book.image,
       address,
       orderDate: new Date(),
-      status: 'pending',
-      paymentStatus: 'unpaid'
+      status: "pending",
+      paymentStatus: "unpaid",
     };
 
     try {
-    const res = await axios.post('http://localhost:3000/orders', orderData);
-    console.log(res.data);
+      const res = await axios.post(
+        "https://book-courier-server-kappa.vercel.app/orders",
+        orderData
+      );
+      // console.log(res.data);
 
-    if (res.data.success) {
-      toast.success("Order placed successfully!");
-      navigate('/dashboard/my-orders');
-      setPhone('');
-      setAddress('');
-      onClose();
-    }
-
+      if (res.data.success) {
+        toast.success("Order placed successfully!");
+        navigate("/dashboard/my-orders");
+        setPhone("");
+        setAddress("");
+        onClose();
+      }
     } catch (err) {
       console.error(err);
       toast.error("Failed to place order!");
@@ -60,11 +61,10 @@ const PurchaseModal = ({ isOpen, onClose, book, user}) => {
   if (!isOpen) return null;
 
   return (
-    <div
-      className="absolute bg-white border rounded-lg shadow-lg p-4 w-80 z-50"
-      
-    >
-      <h3 className="text-lg font-semibold mb-2 text-center">Review Info Before Purchase</h3>
+    <div className="absolute bg-white border rounded-lg shadow-lg p-4 w-80 z-50">
+      <h3 className="text-lg font-semibold mb-2 text-center">
+        Review Info Before Purchase
+      </h3>
 
       <p className="text-sm">Book: {book.title}</p>
       <p className="text-sm">Category: {book.category}</p>
@@ -75,14 +75,14 @@ const PurchaseModal = ({ isOpen, onClose, book, user}) => {
         type="text"
         placeholder="Phone Number"
         value={phone}
-        onChange={e => setPhone(e.target.value)}
+        onChange={(e) => setPhone(e.target.value)}
         className="border p-2 rounded w-full mt-2"
       />
       <input
         type="text"
         placeholder="Address"
         value={address}
-        onChange={e => setAddress(e.target.value)}
+        onChange={(e) => setAddress(e.target.value)}
         className="border p-2 rounded w-full mt-2"
       />
 

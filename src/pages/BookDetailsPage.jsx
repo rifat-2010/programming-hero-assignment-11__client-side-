@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router";
 import PurchaseModal from "../components/Modal/PurchaseModal";
@@ -8,53 +8,80 @@ import { MdAddToPhotos } from "react-icons/md";
 import { toast } from "react-toastify";
 import ReviewForm from "../components/ReviewForm";
 
-
-
 const BookDetailsPage = () => {
-  const {user} = useAuth();
+  const { user } = useAuth();
   const data = useLoaderData();
   // const [book] = useState(data.result);
   const [book, setBook] = useState(data.result);
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-
+  const [orders, setOrders] = useState([]);
+  const [hasOrderedThisBook, setHasOrderedThisBook] = useState(false);
+  console.log(hasOrderedThisBook);
 
   const closeModal = () => {
-  setIsOpen(false)
-}
-
-
-const handleAddWishlist = async () => {
-  if (!user) {
-    alert("You must be logged in to add to wishlist!");
-    return;
-  }
-
-  const wishlistData = {
-    userId: user.uid,
-    bookId: book._id,
-    email: user.email,
-    BookName: book.title,
-    BookImg: book.image,
-    price: book.price,
+    setIsOpen(false);
   };
 
-  try {
-    const res = await axios.post("http://localhost:3000/wishlist", wishlistData);
-    if (res.data.success) {
-      toast.success("Book added to wishlist!");
-      navigate('/dashboard/my-wishlist')
-    } else {
-      toast.error(res.data.message || "Failed to add to wishlist");
+  const handleAddWishlist = async () => {
+    if (!user) {
+      alert("You must be logged in to add to wishlist!");
+      return;
     }
-  } catch (err) {
-    console.error(err);
-    alert("Something went wrong");
-  }
-};
 
+    const wishlistData = {
+      userId: user.uid,
+      bookId: book._id,
+      email: user.email,
+      BookName: book.title,
+      BookImg: book.image,
+      price: book.price,
+    };
 
+    try {
+      const res = await axios.post(
+        "https://book-courier-server-kappa.vercel.app/wishlist",
+        wishlistData
+      );
+      if (res.data.success) {
+        toast.success("Book added to wishlist!");
+        navigate("/dashboard/my-wishlist");
+      } else {
+        toast.error(res.data.message || "Failed to add to wishlist");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong");
+    }
+  };
 
+  // for checking if user ordered this book. then he can see the review from.
+  useEffect(() => {
+    if (!user?.email || !book?._id) return;
+    axios
+      .get(
+        `https://book-courier-server-kappa.vercel.app/orders?email=${user.email}`
+      )
+      .then((res) => {
+        if (res.data?.success) {
+          setOrders(res.data.orders);
+
+          // check current book ordered or not
+          const found = res.data.orders.some(
+            (order) => order.bookId === book._id
+          );
+
+          setHasOrderedThisBook(found);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [user?.email, book?._id]);
+
+  // console.log(orders)
+
+  const checkOrdered = orders.some((order) => order.bookId === book._id);
 
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
@@ -62,7 +89,7 @@ const handleAddWishlist = async () => {
         {/* Back Link */}
         <div className="mb-8">
           <Link
-            to={'/books-page'}
+            to={"/books-page"}
             className="text-blue-600 hover:text-blue-800 font-medium text-sm"
           >
             ← Back to Books
@@ -71,18 +98,18 @@ const handleAddWishlist = async () => {
 
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 md:p-12">
-        <div className="flex items-center justify-center h-full"> 
-            <div className="relative group w-full h-full"> 
+            <div className="flex items-center justify-center h-full">
+              <div className="relative group w-full h-full">
                 <img
-                 src={book.image}
-                 alt={book.title}
-                 className="w-full h-full object-cover rounded-xl shadow-lg group-hover:shadow-2xl transition-shadow duration-300" 
-                    />
-         <div className="absolute top-4 right-4 bg-orange-500 text-white px-4 py-2 rounded-full font-semibold text-sm">
-        {book.status === "published" && "✓ Published"}
-        </div>
-        </div>
-        </div>
+                  src={book.image}
+                  alt={book.title}
+                  className="w-full h-full object-cover rounded-xl shadow-lg group-hover:shadow-2xl transition-shadow duration-300"
+                />
+                <div className="absolute top-4 right-4 bg-orange-500 text-white px-4 py-2 rounded-full font-semibold text-sm">
+                  {book.status === "published" && "✓ Published"}
+                </div>
+              </div>
+            </div>
 
             {/* Book Details Section */}
             <div className="flex flex-col justify-center space-y-6">
@@ -129,9 +156,7 @@ const handleAddWishlist = async () => {
 
               {/* Price */}
               <div className=" border-gray-200 py-6">
-                <p className="text-sm text-gray-600 mb-2">
-                  Price
-                </p>
+                <p className="text-sm text-gray-600 mb-2">Price</p>
                 <p className="text-4xl font-bold text-orange-600">
                   ${book.price.toFixed(2)}
                 </p>
@@ -152,15 +177,11 @@ const handleAddWishlist = async () => {
               </div>
 
               {/* Order Now Button */}
-              <button 
-              className="common-btn" 
-                onClick={() => setIsOpen(true)}
-              >
+              <button className="common-btn" onClick={() => setIsOpen(true)}>
                 Order Now
               </button>
 
-
-             {/* Wishlist Button */}
+              {/* Wishlist Button */}
               <button
                 onClick={handleAddWishlist}
                 className="flex items-center gap-2  hover:bg-blue-600 text-black hover:text-white font-semibold px-4 py-2 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer justify-center border"
@@ -169,15 +190,12 @@ const handleAddWishlist = async () => {
                 Add to Wishlist
               </button>
 
-
               <PurchaseModal
                 book={book}
                 user={user}
                 isOpen={isOpen}
                 onClose={closeModal}
               />
-
-
             </div>
           </div>
 
@@ -199,34 +217,34 @@ const handleAddWishlist = async () => {
             {book.reviews && book.reviews.length > 0 ? (
               <div className="space-y-4 ">
                 {book.reviews.map((review, index) => (
-                 <div
+                  <div
                     key={index}
                     className="bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow border-2 border-orange-400"
                   >
-
                     <div className="flex items-center justify-between mb-3">
                       <div>
                         <p className="font-semibold text-gray-900">
                           {review.name}
                         </p>
-                        <p className="text-sm text-gray-500">{review.userEmail}</p>
+                        <p className="text-sm text-gray-500">
+                          {review.userEmail}
+                        </p>
                       </div>
 
-                     <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <span
-                        key={i}
-                        className={`text-4xl ${
-                          i < Math.floor(book.rating)
-                            ? "text-yellow-400"
-                            : "text-gray-300"
-                        }`}
-                      >
-                        ★
-                      </span>
-                    ))}
-                  </div>
-                 
+                      <div className="flex items-center">
+                        {[...Array(5)].map((_, i) => (
+                          <span
+                            key={i}
+                            className={`text-4xl ${
+                              i < Math.floor(book.rating)
+                                ? "text-yellow-400"
+                                : "text-gray-300"
+                            }`}
+                          >
+                            ★
+                          </span>
+                        ))}
+                      </div>
                     </div>
                     <p className="text-gray-700">{review.comment}</p>
                   </div>
@@ -238,9 +256,14 @@ const handleAddWishlist = async () => {
               </p>
             )}
           </div>
-          {user && 
-          <ReviewForm bookId={book._id} user={user} book={book} setBook={setBook}></ReviewForm>
-          }
+          {user && checkOrdered && (
+            <ReviewForm
+              bookId={book._id}
+              user={user}
+              book={book}
+              setBook={setBook}
+            ></ReviewForm>
+          )}
         </div>
       </div>
     </div>

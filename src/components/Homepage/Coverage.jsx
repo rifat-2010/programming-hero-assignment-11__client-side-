@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 const Coverage = () => {
     const [coverageData, setCoverageData] = useState([]);
     const initialPosition = [23.8103, 90.4125]; 
-    const initialZoom = 3; 
+    const initialZoom = 1; 
 
     useEffect(() => {
         fetch('/Mapdata.json')

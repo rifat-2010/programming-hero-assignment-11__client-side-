@@ -6,40 +6,42 @@ const ReviewForm = ({ bookId, user, setBook }) => {
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const reviewData = {
-    userEmail: user.email,
-    name: user.displayName || "Anonymous",
-    rating,
-    comment,
+    const reviewData = {
+      userEmail: user.email,
+      name: user.displayName || "Anonymous",
+      rating,
+      comment,
+    };
+
+    try {
+      const res = await axios.post(
+        `https://book-courier-server-kappa.vercel.app/books/${bookId}/review`,
+        reviewData
+      );
+
+      if (res.data.success) {
+        setBook((prev) => ({
+          ...prev,
+          reviews: [...prev.reviews, reviewData],
+        }));
+
+        setComment("");
+        toast.success("Review added!");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong!");
+    }
   };
 
-  try {
-    const res = await axios.post(
-      `http://localhost:3000/books/${bookId}/review`,
-      reviewData
-    );
-
-    if (res.data.success) {
-      setBook(prev => ({
-        ...prev,
-        reviews: [...prev.reviews, reviewData]
-      }));
-
-      setComment("");
-      toast.success("Review added!");
-    }
-  } catch (err) {
-    console.error(err);
-    toast.error("Something went wrong!");
-  }
-};
-
-
   return (
-    <form onSubmit={handleSubmit} className="mt-6 border p-4 w-11/12 mx-auto rounded-2xl my-5">
+    <form
+      onSubmit={handleSubmit}
+      className="mt-6 border p-4 w-11/12 mx-auto rounded-2xl my-5"
+    >
       <h3 className="font-semibold mb-2">Give Rating</h3>
 
       <select

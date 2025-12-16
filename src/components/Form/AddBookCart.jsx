@@ -5,9 +5,8 @@ import useAuth from "../../hooks/useAuth";
 
 const AddBookPage = () => {
   const navigate = useNavigate();
-  const {user}= useAuth()
-  console.log(user)
-
+  const { user } = useAuth();
+  // console.log(user)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +26,7 @@ const AddBookPage = () => {
       reviews: [],
     };
 
-    fetch("http://localhost:3000/books", {
+    fetch("https://book-courier-server-kappa.vercel.app/books", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +36,7 @@ const AddBookPage = () => {
       .then((res) => res.json())
       .then((data) => {
         toast.success("Book added successfully!");
-        navigate("/dashboard");
+        navigate("/dashboard/my-books");
         console.log(data);
       })
       .catch((err) => {
@@ -54,7 +53,9 @@ const AddBookPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Title */}
             <div>
-              <label className="block text-gray-700 font-medium mb-1">Title</label>
+              <label className="block text-gray-700 font-medium mb-1">
+                Title
+              </label>
               <input
                 type="text"
                 name="title"
@@ -66,7 +67,9 @@ const AddBookPage = () => {
 
             {/* Author */}
             <div>
-              <label className="block text-gray-700 font-medium mb-1">Author</label>
+              <label className="block text-gray-700 font-medium mb-1">
+                Author
+              </label>
               <input
                 type="text"
                 name="author"
@@ -78,7 +81,9 @@ const AddBookPage = () => {
 
             {/* Category */}
             <div>
-              <label className="block text-gray-700 font-medium mb-1">Category</label>
+              <label className="block text-gray-700 font-medium mb-1">
+                Category
+              </label>
               <select
                 name="category"
                 className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-blue-500"
@@ -94,7 +99,9 @@ const AddBookPage = () => {
 
             {/* Price */}
             <div>
-              <label className="block text-gray-700 font-medium mb-1">Price</label>
+              <label className="block text-gray-700 font-medium mb-1">
+                Price
+              </label>
               <input
                 type="number"
                 name="price"
@@ -107,7 +114,9 @@ const AddBookPage = () => {
 
             {/* Status */}
             <div>
-              <label className="block text-gray-700 font-medium mb-1">Status</label>
+              <label className="block text-gray-700 font-medium mb-1">
+                Status
+              </label>
               <select
                 name="status"
                 className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-blue-500"
@@ -120,7 +129,9 @@ const AddBookPage = () => {
 
             {/* Rating */}
             <div>
-              <label className="block text-gray-700 font-medium mb-1">Rating</label>
+              <label className="block text-gray-700 font-medium mb-1">
+                Rating
+              </label>
               <input
                 type="number"
                 name="rating"
@@ -133,7 +144,9 @@ const AddBookPage = () => {
 
             {/* Published Date */}
             <div>
-              <label className="block text-gray-700 font-medium mb-1">Published Date</label>
+              <label className="block text-gray-700 font-medium mb-1">
+                Published Date
+              </label>
               <input
                 type="date"
                 name="publishedDate"
@@ -143,7 +156,9 @@ const AddBookPage = () => {
 
             {/* Image URL */}
             <div className="md:col-span-2">
-              <label className="block text-gray-700 font-medium mb-1">Image URL</label>
+              <label className="block text-gray-700 font-medium mb-1">
+                Image URL
+              </label>
               <input
                 type="text"
                 name="image"
@@ -155,7 +170,9 @@ const AddBookPage = () => {
 
             {/* Description */}
             <div className="md:col-span-2">
-              <label className="block text-gray-700 font-medium mb-1">Description</label>
+              <label className="block text-gray-700 font-medium mb-1">
+                Description
+              </label>
               <textarea
                 name="description"
                 placeholder="Book Description"
@@ -166,10 +183,7 @@ const AddBookPage = () => {
           </div>
 
           {/* Submit Button */}
-          <button
-            type="submit"
-            className="common-btn"
-          >
+          <button type="submit" className="common-btn">
             Add Book
           </button>
         </form>

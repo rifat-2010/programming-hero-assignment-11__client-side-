@@ -14,7 +14,7 @@ const useRole = () => {
     // //   console.log(result)
     //   return result.data.role
       const {data} = await axiosSecure(`/user/role/${user.email}`)
-      console.log(data)
+      // console.log(data)
       return data.role
     },
   })

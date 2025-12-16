@@ -1,22 +1,19 @@
-import { Book, Truck, Shield, Clock, Star, MapPin, Mail, ArrowRight, Quote, Users, Globe, BookOpenText, Globe2, BookOpen, Coffee, Sun, Zap, Heart } from "lucide-react";
+import { ArrowRight} from "lucide-react";
 import JoinCommunitySection from "../components/Homepage/JoinCommunitySection";
-import { FaCarRear } from "react-icons/fa6";
 import WhyChooseBookCourier from "../components/Homepage/WhyChooseBookCourier";
 import BookDropExpress from "../components/Homepage/BookDropExpress";
 import FeaturedAuthors from "../components/Homepage/FeaturedAuthors";
-
 import CoverageSection from "../components/Homepage/CoverageSection";
 import { Link, useLoaderData } from "react-router";
 import BookCart from "../components/BookCart";
 import HomePageSlider from "../components/Homepage/HomePageSlider";
-import {  ChevronDown } from 'lucide-react';
 import SingleBanner from "../components/Homepage/SingleBanner";
 
 
 export default function HomePage() {
 
   const data = useLoaderData();
-  console.log(data)
+  // console.log(data)
 
   return (
     <div className="min-h-screen bg-background font-body">

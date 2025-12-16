@@ -32,18 +32,22 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
-        loader: () => fetch("http://localhost:3000/latest-books"),
+        loader: () =>
+          fetch("https://book-courier-server-kappa.vercel.app/latest-books"),
       },
       {
         path: "/books-page",
         element: <Books />,
-        loader: () => fetch("http://localhost:3000/books"),
+        loader: () =>
+          fetch("https://book-courier-server-kappa.vercel.app/books"),
       },
       {
         path: "/book-details_page/:id",
         element: <BookDetailsPage />,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/books/${params.id}`),
+          fetch(
+            `https://book-courier-server-kappa.vercel.app/books/${params.id}`
+          ),
       },
       {
         path: "/payment-success",
@@ -58,17 +62,17 @@ export const router = createBrowserRouter([
     path: "/update-user/:id",
     element: <UpdateUser />,
     loader: ({ params }) =>
-      fetch(`http://localhost:3000/users/${params.id}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://book-courier-server-kappa.vercel.app/users/${params.id}`
+      ).then((res) => res.json()),
   },
   {
     path: "/update-order-book/:id",
-    element: <UpdateBook/>,
+    element: <UpdateBook />,
     loader: ({ params }) =>
-      fetch(`http://localhost:3000/order-book/${params.id}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://book-courier-server-kappa.vercel.app/order-book/${params.id}`
+      ).then((res) => res.json()),
   },
 
   {
