@@ -1,94 +1,93 @@
-import { Globe2 } from 'lucide-react';
-import React from 'react';
-import { IoLocationOutline } from 'react-icons/io5';
+import { Globe2 } from "lucide-react";
+import React from "react";
+import { IoLocationOutline } from "react-icons/io5";
+import Coverage from "./Coverage";
 
 const CoverageSection = () => {
-    return (
-        <div>
-    <section class="py-20 bg-gradient-to-br from-indigo-50 to-blue-50">
-  <div class="container mx-auto px-6 max-w-7xl">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <div class="space-y-6">
-        <span class="text-primary font-medium text-sm uppercase tracking-wider">Global Reach</span>
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-6">
-          Serving <span class="text-primary">150+ Cities</span> Worldwide
-        </h2>
-        <p class="text-gray-600 text-lg">
-          From New York to Tokyo, London to Sydney, we bring the joy of reading to book lovers across the globe.
-          Our trusted logistics network ensures your books arrive safely, every time.
-        </p>
-        
-        <div class="grid grid-cols-2 gap-6 mt-8">
-          <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
-            <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center">
-              <IoLocationOutline class="h-5 w-5 text-primary"  />
-            </div>
-            <div>
-              <p class="font-semibold text-gray-900">North America</p>
-              <p class="text-sm text-gray-500">45+ Cities</p>
-            </div>
-          </div>
-          
-          <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
-            <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center">
-              <IoLocationOutline class="h-5 w-5 text-primary"  />
-            </div>
-            <div>
-              <p class="font-semibold text-gray-900">Europe</p>
-              <p class="text-sm text-gray-500">50+ Cities</p>
-            </div>
-          </div>
-          
-          <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
-            <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center">
-              <IoLocationOutline class="h-5 w-5 text-primary"  />
-            </div>
-            <div>
-              <p class="font-semibold text-gray-900">Asia Pacific</p>
-              <p class="text-sm text-gray-500">40+ Cities</p>
-            </div>
-          </div>
-          
-          <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
-            <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center">
-             <IoLocationOutline class="h-5 w-5 text-primary"  />
-            </div>
-            <div>
-              <p class="font-semibold text-gray-900">Others</p>
-              <p class="text-sm text-gray-500">15+ Cities</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="relative">
-        <div class="aspect-video rounded-2xl overflow-hidden shadow-xl bg-white relative">
+  return (
+    <div>
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
           <img
-            src="https://static.photos/travel/1024x576/42"
-            alt="World Map Coverage"
-            class="w-full h-full object-cover"
+            src="https://enzostvs-cached-generation.hf.space/generate/a-beautiful-library-with-global-map-and-books?format=landscape-16_9"
+            alt="Library Background"
+            className="w-full h-full object-cover"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-          <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between">
-            <div class="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-md">
-              <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Globe2 class="h-6 w-6 text-primary" />
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+        </div>
+        <div className="container mx-auto px-6 max-w-7xl relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <span className="text-white font-medium text-sm uppercase tracking-wider bg-primary/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                Global Reach
+              </span>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mt-2 mb-6">
+                Serving <span className="text-yellow-300">
+                  150+ Cities
+                </span>{" "}
+                Worldwide
+              </h2>
+              <p className="text-white/90 text-lg leading-relaxed">
+                From New York to Tokyo, London to Sydney, we bring the joy of
+                reading to book lovers across the globe. Our trusted logistics
+                network ensures your books arrive safely, every time.
+              </p>
+
+              <div className="grid grid-cols-2 gap-6 mt-8">
+                <div className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 hover:border-white/40">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
+                    <IoLocationOutline className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">North America</p>
+                    <p className="text-sm text-white/70">45+ Cities</p>
+                  </div>
                 </div>
-                <div>
-                  <p class="font-bold text-2xl text-gray-900">150+</p>
-                  <p class="text-sm text-gray-600">Cities Covered</p>
+
+                <div className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 hover:border-white/40">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
+                    <IoLocationOutline className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Europe</p>
+                    <p className="text-sm text-white/70">50+ Cities</p>
+                  </div>
                 </div>
+
+                <div className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 hover:border-white/40">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
+                    <IoLocationOutline className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Asia Pacific</p>
+                    <p className="text-sm text-white/70">40+ Cities</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 hover:border-white/40">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
+                    <IoLocationOutline className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Others</p>
+                    <p className="text-sm text-white/70">15+ Cities</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* map side content */}
+            <div className="relative">
+              <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-md border border-white/20 relative">
+              <Coverage></Coverage>
+                <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent"></div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
-  </div>
-</section>
-        </div>
-    );
+  );
 };
 
 export default CoverageSection;

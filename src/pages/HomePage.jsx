@@ -1,4 +1,4 @@
-import { Book, Truck, Shield, Clock, Star, MapPin, Mail, ArrowRight, Quote, Users, Globe, BookOpenText, Globe2 } from "lucide-react";
+import { Book, Truck, Shield, Clock, Star, MapPin, Mail, ArrowRight, Quote, Users, Globe, BookOpenText, Globe2, BookOpen, Coffee, Sun, Zap, Heart } from "lucide-react";
 import JoinCommunitySection from "../components/Homepage/JoinCommunitySection";
 import { FaCarRear } from "react-icons/fa6";
 import WhyChooseBookCourier from "../components/Homepage/WhyChooseBookCourier";
@@ -9,6 +9,9 @@ import CoverageSection from "../components/Homepage/CoverageSection";
 import { Link, useLoaderData } from "react-router";
 import BookCart from "../components/BookCart";
 import HomePageSlider from "../components/Homepage/HomePageSlider";
+import {  ChevronDown } from 'lucide-react';
+import SingleBanner from "../components/Homepage/SingleBanner";
+
 
 export default function HomePage() {
 
@@ -17,7 +20,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background font-body">
-
 
       {/* Hero Banner Slider Section */}
        <HomePageSlider></HomePageSlider>
@@ -49,12 +51,14 @@ export default function HomePage() {
     </section>
 
 
-      {/* Coverage Section */}
-    <CoverageSection></CoverageSection>
-
- 
+        {/*single banner section */}
+      <SingleBanner></SingleBanner>
+  
       {/* <!-- Why Choose BookCourier Section --> */}
     <WhyChooseBookCourier></WhyChooseBookCourier>
+
+      {/* Coverage Section */}
+    <CoverageSection></CoverageSection>
 
       {/* Featured Authors Section */}
     <FeaturedAuthors></FeaturedAuthors>

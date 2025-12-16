@@ -119,6 +119,7 @@ useEffect(() => {
         <th className="border p-3 text-left">User Name</th>
         <th className="border p-3 text-left">User Email</th>
         <th className="border p-3 text-left">Book Name</th>
+        <th className="border p-3 text-left">Payment Id</th>
         <th className="border p-3 text-left">Price</th>
         <th className="border p-3 text-left">Order Date</th>
       </tr>
@@ -131,6 +132,7 @@ useEffect(() => {
           <td className="border p-2">{order.name}</td>
           <td className="border p-2">{order.email}</td>
           <td className="border p-2 font-mono text-sm">{order.BookName}</td>
+          <td className="border p-2 font-mono text-sm">{order.userId}</td>
           <td className="border p-2 font-bold text-green-600">${order.Price}</td>
           <td className="border p-2">
             {new Date(order.orderDate).toLocaleDateString()}

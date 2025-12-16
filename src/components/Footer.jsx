@@ -7,12 +7,12 @@ import logo from '../assets/project-logo.png';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-    const handleSubscribe = (e) => {
+    const handleJoin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
     
         console.log(email);
-        toast.success("Thanks for Subscribing Us");
+        toast.success("Thanks for Joining Us");
       };
 
 
@@ -188,7 +188,7 @@ const Footer = () => {
               Newsletter
             </h4>
             <p className="text-gray-400 text-sm mb-4">Subscribe to get special offers and updates</p>
-          <form onSubmit={handleSubscribe}>
+          <form onSubmit={handleJoin}>
 
               <div className="space-y-2">
               <input
@@ -199,7 +199,7 @@ const Footer = () => {
                 className="w-full px-4 py-2 bg-slate-800 text-white rounded-lg border border-slate-700 focus:border-orange-500 focus:outline-none transition placeholder-gray-500"
               />
               <button className="w-full px-4 py-2 bg-linear-to-r from-orange-500 to-orange-600 text-white rounded-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition duration-200 active:scale-95 cursor-pointer">
-                Subscribe
+                Join Now
               </button>
             </div>
         </form>

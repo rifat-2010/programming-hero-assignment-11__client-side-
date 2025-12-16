@@ -1,0 +1,202 @@
+[
+  {
+    "region": "Asia",
+    "country": "Bangladesh",
+    "city": "Dhaka",
+    "covered_area": ["Gulshan", "Badda", "Motijheel"],
+    "status": "active",
+    "flowchart": "https://example.com/bd-dhaka-flow.png",
+    "longitude": 90.4125,
+    "latitude": 23.8103
+  },
+  {
+    "region": "North America",
+    "country": "United States",
+    "city": "New York City",
+    "covered_area": ["Manhattan", "Brooklyn", "Queens"],
+    "status": "active",
+    "flowchart": "https://example.com/us-nyc-flow.png",
+    "longitude": -74.0060,
+    "latitude": 40.7128
+  },
+  {
+    "region": "Europe",
+    "country": "United Kingdom",
+    "city": "London",
+    "covered_area": ["Camden", "Westminster", "Islington"],
+    "status": "active",
+    "flowchart": "https://example.com/uk-london-flow.png",
+    "longitude": 0.1278,
+    "latitude": 51.5074
+  },
+  {
+    "region": "Asia",
+    "country": "Japan",
+    "city": "Tokyo",
+    "covered_area": ["Shinjuku", "Shibuya", "Ginza"],
+    "status": "active",
+    "flowchart": "https://example.com/jp-tokyo-flow.png",
+    "longitude": 139.6917,
+    "latitude": 35.6895
+  },
+  {
+    "region": "Oceania",
+    "country": "Australia",
+    "city": "Sydney",
+    "covered_area": ["CBD", "Surry Hills", "Bondi"],
+    "status": "active",
+    "flowchart": "https://example.com/au-sydney-flow.png",
+    "longitude": 151.2093,
+    "latitude": -33.8688
+  },
+  {
+    "region": "Europe",
+    "country": "France",
+    "city": "Paris",
+    "covered_area": ["Le Marais", "Latin Quarter", "Montmartre"],
+    "status": "active",
+    "flowchart": "https://example.com/fr-paris-flow.png",
+    "longitude": 2.3522,
+    "latitude": 48.8566
+  },
+  {
+    "region": "Asia",
+    "country": "India",
+    "city": "Mumbai",
+    "covered_area": ["Andheri", "Bandra", "Colaba"],
+    "status": "active",
+    "flowchart": "https://example.com/in-mumbai-flow.png",
+    "longitude": 72.8777,
+    "latitude": 19.0760
+  },
+  {
+    "region": "South America",
+    "country": "Brazil",
+    "city": "Rio de Janeiro",
+    "covered_area": ["Copacabana", "Ipanema", "Centro"],
+    "status": "active",
+    "flowchart": "https://example.com/br-rio-flow.png",
+    "longitude": -43.1729,
+    "latitude": -22.9068
+  },
+  {
+    "region": "Africa",
+    "country": "South Africa",
+    "city": "Cape Town",
+    "covered_area": ["Gardens", "Green Point", "Claremont"],
+    "status": "active",
+    "flowchart": "https://example.com/za-capetown-flow.png",
+    "longitude": 18.4241,
+    "latitude": -33.9249
+  },
+  {
+    "region": "Europe",
+    "country": "Germany",
+    "city": "Berlin",
+    "covered_area": ["Mitte", "Kreuzberg", "Prenzlauer Berg"],
+    "status": "active",
+    "flowchart": "https://example.com/de-berlin-flow.png",
+    "longitude": 13.4050,
+    "latitude": 52.5200
+  },
+  {
+    "region": "Asia",
+    "country": "China",
+    "city": "Shanghai",
+    "covered_area": ["Pudong", "Jing'an", "Xuhui"],
+    "status": "active",
+    "flowchart": "https://example.com/cn-shanghai-flow.png",
+    "longitude": 121.4737,
+    "latitude": 31.2304
+  },
+  {
+    "region": "North America",
+    "country": "Canada",
+    "city": "Toronto",
+    "covered_area": ["Downtown", "Etobicoke", "North York"],
+    "status": "active",
+    "flowchart": "https://example.com/ca-toronto-flow.png",
+    "longitude": -79.3832,
+    "latitude": 43.6532
+  },
+  {
+    "region": "Europe",
+    "country": "Italy",
+    "city": "Rome",
+    "covered_area": ["Trastevere", "Monti", "Prati"],
+    "status": "active",
+    "flowchart": "https://example.com/it-rome-flow.png",
+    "longitude": 12.4964,
+    "latitude": 41.9028
+  },
+  {
+    "region": "Asia",
+    "country": "South Korea",
+    "city": "Seoul",
+    "covered_area": ["Gangnam", "Myeongdong", "Hongdae"],
+    "status": "active",
+    "flowchart": "https://example.com/kr-seoul-flow.png",
+    "longitude": 126.9780,
+    "latitude": 37.5665
+  },
+  {
+    "region": "Europe",
+    "country": "Netherlands",
+    "city": "Amsterdam",
+    "covered_area": ["Centrum", "De Pijp", "Oud-West"],
+    "status": "active",
+    "flowchart": "https://example.com/nl-amsterdam-flow.png",
+    "longitude": 4.8952,
+    "latitude": 52.3702
+  },
+  {
+    "region": "Middle East",
+    "country": "United Arab Emirates",
+    "city": "Dubai",
+    "covered_area": ["Marina", "JLT", "Downtown"],
+    "status": "active",
+    "flowchart": "https://example.com/ae-dubai-flow.png",
+    "longitude": 55.2708,
+    "latitude": 25.2048
+  },
+  {
+    "region": "South America",
+    "country": "Argentina",
+    "city": "Buenos Aires",
+    "covered_area": ["Palermo", "Recoleta", "San Telmo"],
+    "status": "active",
+    "flowchart": "https://example.com/ar-buenos-aires-flow.png",
+    "longitude": -58.3816,
+    "latitude": -34.6037
+  },
+  {
+    "region": "Africa",
+    "country": "Nigeria",
+    "city": "Lagos",
+    "covered_area": ["Ikeja", "Victoria Island", "Lekki"],
+    "status": "active",
+    "flowchart": "https://example.com/ng-lagos-flow.png",
+    "longitude": 3.3792,
+    "latitude": 6.5244
+  },
+  {
+    "region": "Asia",
+    "country": "Thailand",
+    "city": "Bangkok",
+    "covered_area": ["Siam", "Sukhumvit", "Silom"],
+    "status": "active",
+    "flowchart": "https://example.com/th-bangkok-flow.png",
+    "longitude": 100.5018,
+    "latitude": 13.7563
+  },
+  {
+    "region": "North America",
+    "country": "Mexico",
+    "city": "Mexico City",
+    "covered_area": ["Roma Norte", "Condesa", "Coyoacán"],
+    "status": "active",
+    "flowchart": "https://example.com/mx-mexico-city-flow.png",
+    "longitude": -99.1332,
+    "latitude": 19.4326
+  }
+]

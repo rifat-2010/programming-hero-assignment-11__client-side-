@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
 import PurchaseModal from "../components/Modal/PurchaseModal";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
@@ -16,6 +16,7 @@ const BookDetailsPage = () => {
   // const [book] = useState(data.result);
   const [book, setBook] = useState(data.result);
   const [isOpen, setIsOpen] = useState(false)
+  const navigate = useNavigate();
 
 
   const closeModal = () => {
@@ -42,6 +43,7 @@ const handleAddWishlist = async () => {
     const res = await axios.post("http://localhost:3000/wishlist", wishlistData);
     if (res.data.success) {
       toast.success("Book added to wishlist!");
+      navigate('/dashboard/my-wishlist')
     } else {
       toast.error(res.data.message || "Failed to add to wishlist");
     }
