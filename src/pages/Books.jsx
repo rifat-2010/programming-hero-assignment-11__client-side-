@@ -44,7 +44,7 @@ const Books = () => {
       </div>
 
       {/* Search + Count Row */}
-      <div className="flex items-center justify-between w-11/12 mx-auto mb-8">
+      <div className="flex flex-col-reverse md:flex-row items-center justify-between w-11/12 mx-auto mb-8">
         {/* Search Box */}
         <div className="flex items-center gap-3">
           <FaSearch size={28} className="text-blue-800" />

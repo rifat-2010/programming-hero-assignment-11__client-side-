@@ -18,7 +18,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import ManageOrders from "../pages/Dashboard/Seller/ManageOrders";
 import UpdateUser from "../pages/UpdateUser";
 import UpdateBook from "../pages/UpdateBook";
-import AddPlant from "../pages/Dashboard/Seller/AddPlant";
+import AddBook from "../pages/Dashboard/Seller/AddBook";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 import MyWishlist from "../pages/Dashboard/Customer/MyWishlist";
 
@@ -60,7 +60,11 @@ export const router = createBrowserRouter([
   { path: "/signUp-page", element: <SignUp /> },
   {
     path: "/update-user/:id",
-    element: <UpdateUser />,
+    element: (
+      <PrivateRoute>
+        <UpdateUser />
+      </PrivateRoute>
+    ),
     loader: ({ params }) =>
       fetch(
         `https://book-courier-server-kappa.vercel.app/users/${params.id}`
@@ -68,7 +72,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/update-order-book/:id",
-    element: <UpdateBook />,
+    element: (
+      <PrivateRoute>
+        <UpdateBook />
+      </PrivateRoute>
+    ),
     loader: ({ params }) =>
       fetch(
         `https://book-courier-server-kappa.vercel.app/order-book/${params.id}`
@@ -95,7 +103,7 @@ export const router = createBrowserRouter([
         path: "add-book",
         element: (
           <PrivateRoute>
-            <AddPlant />
+            <AddBook />
           </PrivateRoute>
         ),
       },
@@ -141,7 +149,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "manage-orders",
-        element: <ManageOrders />,
+        element: (
+          <PrivateRoute>
+            <ManageOrders />
+          </PrivateRoute>
+        ),
       },
     ],
   },

@@ -170,7 +170,7 @@ const handleGoogleSignIn = async () => {
                         type="submit"
                         className="common-btn"
                     >
-                        Login to BookDrop
+                        Login to BookCourier
                     </button>
 
                     {/* Divider */}
