@@ -135,7 +135,7 @@ const handleGoogleSignIn = async () => {
                             type="email"
                             name="email"
                             required
-                            placeholder="your.email@bookdrop.com"
+                            placeholder="your.email@bookCourier.com"
                             className="input input-bordered w-full bg-white/15 text-white placeholder-white/70 border-none focus:outline-none focus:ring-4 focus:ring-[#f97316] transition-all duration-200"
                         />
                     </div>

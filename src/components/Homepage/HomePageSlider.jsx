@@ -21,7 +21,7 @@ const HomePageSlider = () => {
             Explore Books
           </Link>
           <Link
-            to="/add-book"
+            to="/dashboard/add-book"
             className="btn btn-outline border-white text-white hover:bg-white hover:text-blue-700"
           >
             Add a Book
@@ -34,14 +34,14 @@ const HomePageSlider = () => {
       id: "slide2",
       img: "https://images.pexels.com/photos/279321/pexels-photo-279321.jpeg",
       title: ["Track. Read.", "Learn More."],
-      desc: "Manage your reading list and stay inspired with every page you turn.",
+      desc: "Create a list of your desired books and stay motivated.",
       buttons: (
         <div className="flex gap-4">
           <Link
-            // to="/readingList"
+            to="/dashboard/my-wishlist"
             className="btn bg-blue-600 hover:bg-blue-700 text-white font-semibold"
           >
-            My Reading List
+            My Wishlist
           </Link>
         </div>
       ),
@@ -61,7 +61,7 @@ const HomePageSlider = () => {
             View All Books
           </Link>
           <Link
-            to="/add-Book"
+            to="/dashboard/add-Book"
             className="btn bg-blue-600 hover:bg-blue-700 text-white font-semibold"
           >
             Add Book
@@ -113,7 +113,7 @@ const HomePageSlider = () => {
             Browse Books
           </Link>
           <Link
-            to="/search"
+            to="/books-page"
             className="btn btn-outline border-white text-white hover:bg-white hover:text-blue-700"
           >
             <Search size={18} className="mr-2" />

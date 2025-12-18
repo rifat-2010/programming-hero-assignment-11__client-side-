@@ -61,7 +61,7 @@ const Footer = () => {
     { label: 'Contact Us', path: '/signIn-page' },
     { label: 'Track Order', path: '/dashboard/my-orders' },
     { label: 'Order Books', path: '/books-page' },
-    { label: 'Profile Info', path: '/profile' },
+    { label: 'Profile Info', path: '/dashboard/profile' },
   ];
 
   // Company links
