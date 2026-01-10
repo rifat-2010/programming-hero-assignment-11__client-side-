@@ -1,6 +1,6 @@
 import AdminStatistics from "../../../components/Dashboard/Statistics/AdminStatistics";
 import UserStatistics from "../../../components/Dashboard/Statistics/UserStatistics";
-import SellerStatistics from "../../../components/Dashboard/Statistics/SellerStatistics";
+import LibrarianStatistics from "../../../components/Dashboard/Statistics/LibrarianStatistics";
 import Loading from "../../../components/Loading";
 import useRole from "../../../hooks/useRole";
 const Statistics = () => {
@@ -9,7 +9,7 @@ const Statistics = () => {
   return (
     <div>
       {role === "user" && <UserStatistics />}
-      {role === "librarian" && <SellerStatistics />}
+      {role === "librarian" && <LibrarianStatistics />}
       {role === "admin" && <AdminStatistics />}
     </div>
   );

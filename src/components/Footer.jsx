@@ -52,16 +52,16 @@ const Footer = () => {
   const quickLinks = [
     { label: 'Home', path: '/' },
     { label: 'All Books', path: '/books-page' },
+    { label: 'About Us', path: '/about-us' },
     { label: 'Dashboard', path: '/dashboard' },
-    { label: 'My Wishlist', path: '/dashboard/my-wishlist' },
   ];
 
   // Customer service links
   const customerService = [
-    { label: 'Contact Us', path: '/signIn-page' },
-    { label: 'Track Order', path: '/dashboard/my-orders' },
-    { label: 'Order Books', path: '/books-page' },
-    { label: 'Profile Info', path: '/dashboard/profile' },
+    { label: 'Contact Us', path: '/about-us' },
+    { label: 'Track Order', path: '/dashboard' },
+    { label: 'Order Books', path: '/dashboard' },
+    { label: 'Profile Info', path: '/dashboard/' },
   ];
 
   // Company links

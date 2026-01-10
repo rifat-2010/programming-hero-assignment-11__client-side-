@@ -15,16 +15,16 @@ const HomePageSlider = () => {
       buttons: (
         <div className="flex flex-wrap gap-4">
           <Link
+            to="/about-us"
+            className="btn btn-outline border-white text-white hover:bg-white hover:text-blue-700"
+          >
+            Axplore About Us
+          </Link>
+          <Link
             to="/books-page"
             className="btn bg-blue-600 hover:bg-blue-700 text-white font-semibold"
           >
             Explore Books
-          </Link>
-          <Link
-            to="/dashboard/add-book"
-            className="btn btn-outline border-white text-white hover:bg-white hover:text-blue-700"
-          >
-            Add a Book
           </Link>
         </div>
       ),
@@ -38,10 +38,16 @@ const HomePageSlider = () => {
       buttons: (
         <div className="flex gap-4">
           <Link
-            to="/dashboard/my-wishlist"
+            to="/dashboard"
+            className="btn btn-outline border-white text-white hover:bg-white hover:text-blue-700"
+          >
+            Go to Dashboard
+          </Link>
+          <Link
+            to="/about-us"
             className="btn bg-blue-600 hover:bg-blue-700 text-white font-semibold"
           >
-            My Wishlist
+            Learn More
           </Link>
         </div>
       ),
@@ -61,10 +67,10 @@ const HomePageSlider = () => {
             View All Books
           </Link>
           <Link
-            to="/dashboard/add-Book"
+            to="/dashboard"
             className="btn bg-blue-600 hover:bg-blue-700 text-white font-semibold"
           >
-            Add Book
+            Tracking Your Activity
           </Link>
         </div>
       ),
@@ -75,12 +81,21 @@ const HomePageSlider = () => {
       title: ["Start Your", "Reading Journey"],
       desc: "Sign up today to manage your favorite books and reading list.",
       buttons: (
+         <div className="flex gap-4">
         <Link
-          to="/signIn-page"
+          to="/about-us"
           className="btn btn-outline border-white text-white hover:bg-white hover:text-blue-700 font-semibold"
         >
           Join Our Community
         </Link>
+        <Link
+            to="/books-page"
+            className="btn bg-blue-600 hover:bg-blue-700 text-white"
+          >
+            <Search size={18} className="mr-2" />
+            Quick Search
+         </Link>
+        </div>
       ),
     },
     {
@@ -89,6 +104,14 @@ const HomePageSlider = () => {
       title: ["Knowledge Awaits"],
       desc: "Unlock the world of reading with our curated collections.",
       buttons: (
+         <div className="flex gap-4">
+          <Link
+            to="/books-page"
+            className="btn btn-outline border-white text-white hover:bg-white hover:text-blue-700"
+          >
+            <Search size={18} className="mr-2" />
+            Wanto to Know About Us
+          </Link>
         <Link
           to="/books-page"
           className="btn bg-blue-600 hover:bg-blue-700 text-white"
@@ -96,6 +119,7 @@ const HomePageSlider = () => {
           <Layers size={18} className="mr-2" />
           View Collections
         </Link>
+        </div>
       ),
     },
     {
@@ -106,18 +130,18 @@ const HomePageSlider = () => {
       buttons: (
         <div className="flex flex-wrap gap-4">
           <Link
+            to="/about-us"
+            className="btn btn-outline border-white text-white hover:bg-white hover:text-blue-700"
+          >
+            <Search size={18} className="mr-2" />
+            Learn More
+          </Link>
+          <Link
             to="/books-page"
             className="btn bg-blue-600 hover:bg-blue-700 text-white font-semibold"
           >
             <BookOpen size={18} className="mr-2" />
             Browse Books
-          </Link>
-          <Link
-            to="/books-page"
-            className="btn btn-outline border-white text-white hover:bg-white hover:text-blue-700"
-          >
-            <Search size={18} className="mr-2" />
-            Quick Search
           </Link>
         </div>
       ),

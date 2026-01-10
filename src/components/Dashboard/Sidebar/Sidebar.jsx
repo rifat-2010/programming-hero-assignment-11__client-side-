@@ -49,8 +49,11 @@ const Sidebar = () => {
       <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
         <div>
           <div className="block cursor-pointer p-4 font-bold">
-            <Link to="/">
-              <img src={logo} alt="logo" width="100" height="100" />
+            <Link to="/" className="flex gap-2 items-center">
+              <img src={logo} alt="logo" width="80" height="80" />
+              <span className="text-xl font-bold text-gray-800">
+                  BookCourier
+                </span>
             </Link>
           </div>
         </div>
@@ -75,7 +78,10 @@ const Sidebar = () => {
             {/* Logo */}
             <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-lime-100 mx-auto">
               <Link to="/">
-                <img src={logo} alt="logo" width="100" height="100" />
+                <img src={logo} alt="logo" width="80" height="80" /> 
+                <span className="text-xl font-bold text-gray-800">
+                  BookCourier
+                </span>
               </Link>
             </div>
           </div>

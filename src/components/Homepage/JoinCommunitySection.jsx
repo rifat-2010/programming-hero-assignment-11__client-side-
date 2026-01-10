@@ -40,7 +40,7 @@ const JoinCommunitySection = () => {
 
           {/* Heading */}
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-snug drop-shadow-md">
-            Unlock the Next Chapter
+            Unlock <span className="text-orange-600">the Next Chapter</span>
           </h2>
 
           <p className="text-gray-200 max-w-lg mb-10 text-lg">
@@ -59,13 +59,13 @@ const JoinCommunitySection = () => {
               required
               placeholder="Enter your email"
               className="flex-1 px-6 py-4 rounded-xl bg-white/90 text-gray-800 placeholder:text-gray-500 
-              border-none focus:outline-none focus:ring-4 focus:ring-[#ffc300] transition"
+              border-none focus:outline-none focus:ring-4 focus:ring-orange-400 transition"
             />
 
             <button
               type="submit"
-              className="px-8 py-4 bg-[#ffc300] hover:bg-[#ffb700] text-gray-900 font-bold rounded-xl shadow-xl transition transform hover:scale-[1.02] cursor-pointer whitespace-nowrap"
-            >
+              className="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-gray-900 font-bold rounded-xl shadow-xl transition transform hover:scale-[1.02] cursor-pointer whitespace-nowrap"
+              >
               Subscribe
             </button>
           </form>

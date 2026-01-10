@@ -21,6 +21,7 @@ import UpdateBook from "../pages/UpdateBook";
 import AddBook from "../pages/Dashboard/Seller/AddBook";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 import MyWishlist from "../pages/Dashboard/Customer/MyWishlist";
+import AboutUs from "../pages/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
         element: <Books />,
         loader: () =>
           fetch("https://book-courier-server-kappa.vercel.app/books"),
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
       },
       {
         path: "/book-details_page/:id",

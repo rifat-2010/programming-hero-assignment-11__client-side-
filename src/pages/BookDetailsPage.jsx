@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router";
 import PurchaseModal from "../components/Modal/PurchaseModal";
 import useAuth from "../hooks/useAuth";
+import useRole from "../hooks/useRole";
 import axios from "axios";
 import { MdAddToPhotos } from "react-icons/md";
 import { toast } from "react-toastify";
@@ -10,6 +11,7 @@ import ReviewForm from "../components/ReviewForm";
 
 const BookDetailsPage = () => {
   const { user } = useAuth();
+  const [role] = useRole();
   const data = useLoaderData();
   // const [book] = useState(data.result);
   const [book, setBook] = useState(data.result);
@@ -182,13 +184,15 @@ const BookDetailsPage = () => {
               </button>
 
               {/* Wishlist Button */}
-              <button
-                onClick={handleAddWishlist}
-                className="flex items-center gap-2  hover:bg-blue-600 text-black hover:text-white font-semibold px-4 py-2 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer justify-center border"
-              >
-                <MdAddToPhotos />
-                Add to Wishlist
-              </button>
+              {role === "user" && (
+                <button
+                  onClick={handleAddWishlist}
+                  className="flex items-center gap-2  hover:bg-blue-600 text-black hover:text-white font-semibold px-4 py-2 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer justify-center border"
+                >
+                  <MdAddToPhotos />
+                  Add to Wishlist
+                </button>
+              )}
 
               <PurchaseModal
                 book={book}

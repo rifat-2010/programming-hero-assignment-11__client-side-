@@ -50,8 +50,7 @@ const SingleBanner = () => {
                         </div>
                     </div>
                     
-                    <Link to={'/books-page'} className="pt-4 inline-block bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold px-8 py-3 rounded-full text-lg transition-all duration-300 shadow-xl hover:shadow-amber-500/50"
-                        >
+                    <Link to={'/books-page'} className="common-btn">
                         Start Browsing   
                     </Link>
                 </div>

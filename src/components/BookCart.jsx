@@ -1,17 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from "react";
+import { Link } from "react-router";
 
 const BookCart = ({ book }) => {
   return (
     <Link
       to={`/book-details_page/${book._id}`}
-      className="block"
+      className="block h-full"
       data-aos="zoom-in"
     >
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:-translate-y-1 hover:shadow-2xl cursor-pointer group">
-
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:-translate-y-1 hover:shadow-2xl cursor-pointer group h-full flex flex-col">
         {/* Image */}
-        <div className="relative h-64 overflow-hidden">
+        <div className="relative h-64 w-full overflow-hidden">
           <img
             src={book.image}
             alt={book.title}
@@ -20,15 +19,14 @@ const BookCart = ({ book }) => {
 
           {/* Floating Badge */}
           <span className="absolute top-3 left-3 bg-blue-600 text-white text-xs px-3 py-1 rounded-full shadow">
-            {book.status}
+            {book.category}
           </span>
         </div>
 
         {/* Content */}
-        <div className="p-5">
-
+        <div className="p-5 flex flex-col grow">
           {/* Title */}
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 transition">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 transition line-clamp-1">
             {book.title}
           </h3>
 
@@ -43,21 +41,19 @@ const BookCart = ({ book }) => {
           </p>
 
           {/* Extra Info Row */}
-          <div className="flex justify-between items-center text-sm text-gray-700 dark:text-gray-300">
-
+          <div className="flex justify-between items-center text-sm text-gray-700 dark:text-gray-300 mt-auto">
             {/* Rating */}
             <div className="flex items-center">
               <span className="text-yellow-500 text-lg mr-1">★</span>
               <span>{book.rating}</span>
             </div>
-
+ 
             {/* Price or Category */}
-            <span className="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
-              {book.category || "Novel"}
+            <span className="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 group-hover:text-blue-600 transition line-clamp-1 font-bold">
+             $ {book.price || "0"}
             </span>
           </div>
         </div>
-
       </div>
     </Link>
   );

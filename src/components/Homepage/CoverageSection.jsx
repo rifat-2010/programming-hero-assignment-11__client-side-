@@ -22,7 +22,7 @@ const CoverageSection = () => {
                 Global Reach
               </span>
               <h2 className="text-4xl md:text-5xl font-bold text-white mt-2 mb-6">
-                Serving <span className="text-yellow-300">
+                Serving <span className="text-orange-500">
                   150+ Cities
                 </span>{" "}
                 Worldwide

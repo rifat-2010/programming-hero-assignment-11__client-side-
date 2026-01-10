@@ -33,7 +33,7 @@ const BookDropExpress = () => {
 
           <Link
             to={"/books-page"}
-            className="inline-block bg-[#f97316] hover:bg-[#ea580c] text-white text-lg font-bold px-10 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl ring-4 ring-[#f97316]/50"
+            className="common-btn"
           >
             Start Reading Now
           </Link>
@@ -63,13 +63,13 @@ const BookDropExpress = () => {
               <p class="text-gray-600 mt-2 font-medium">Books Available</p>
               <div class="mt-4 h-1 bg-linear-to-r from-primary to-transparent w-3/4 mx-auto rounded-full"></div>
             </div>
-            <div class="transition-all duration-500 transform hover:scale-105 delay-100">
-              <p class="font-bold text-4xl md:text-5xl font-mono text-secondary animate-pulse">
-                500K+
-              </p>
-              <p class="text-gray-600 mt-2 font-medium">Happy Readers</p>
-              <div class="mt-4 h-1 bg-linear-to-r from-secondary to-transparent w-3/4 mx-auto rounded-full"></div>
-            </div>
+           <div class="transition-all duration-500 transform hover:scale-105 delay-100">
+            <p class="font-bold text-4xl md:text-5xl font-mono text-orange-600 animate-pulse">
+              500K+
+            </p>
+            <p class="text-gray-600 mt-2 font-medium">Happy Readers</p>
+            <div class="mt-4 h-1 bg-linear-to-r from-orange-600 to-transparent w-3/4 mx-auto rounded-full"></div>
+          </div>
             <div class="transition-all duration-500 transform hover:scale-105 delay-200">
               <p class="font-bold text-4xl md:text-5xl font-mono text-primary animate-pulse">
                 150+
@@ -79,13 +79,13 @@ const BookDropExpress = () => {
             </div>
             <div class="transition-all duration-500 transform hover:scale-105 delay-300">
               <div class="flex items-center justify-center">
-                <p class="font-bold text-4xl md:text-5xl font-mono text-secondary animate-pulse">
+                <p class="font-bold text-4xl md:text-5xl font-mono text-orange-600 animate-pulse">
                   4.9
                 </p>
                 <i data-feather="star" class="w-8 h-8 text-yellow-400 ml-2"></i>
               </div>
               <p class="text-gray-600 mt-2 font-medium">Customer Rating</p>
-              <div class="mt-4 h-1 bg-linear-to-r from-secondary to-transparent w-3/4 mx-auto rounded-full"></div>
+              <div class="mt-4 h-1 bg-linear-to-r from-orange-600 to-transparent w-3/4 mx-auto rounded-full"></div>
             </div>
           </div>
         </div>

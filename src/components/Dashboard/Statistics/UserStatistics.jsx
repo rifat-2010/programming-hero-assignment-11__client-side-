@@ -5,7 +5,7 @@ import useAuth from "../../../hooks/useAuth";
 const UserStatistics = () => {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
-  // console.log(orders);
+  console.log(orders);
 
   useEffect(() => {
     if (!user?.email) return;
@@ -129,8 +129,9 @@ const UserStatistics = () => {
           <tr>
             <th className="border p-3 text-left">User Name</th>
             <th className="border p-3 text-left">User Email</th>
-            <th className="border p-3 text-left">Book Name</th>
+            <th className="border p-3 text-left">Book Address</th>
             <th className="border p-3 text-left">Payment Id</th>
+            <th className="border p-3 text-left">Payment Status</th>
             <th className="border p-3 text-left">Price</th>
             <th className="border p-3 text-left">Order Date</th>
           </tr>
@@ -145,8 +146,9 @@ const UserStatistics = () => {
             >
               <td className="border p-2">{order.name}</td>
               <td className="border p-2">{order.email}</td>
-              <td className="border p-2 font-mono text-sm">{order.BookName}</td>
-              <td className="border p-2 font-mono text-sm">{order.userId}</td>
+              <td className="border p-2 font-mono text-sm">{order.address}</td>
+              <td className="border p-2 font-mono text-sm">{order.transactionId}</td>
+              <td className="border p-2 font-mono text-sm">{order.paymentStatus}</td>
               <td className="border p-2 font-bold text-green-600">
                 ${order.Price}
               </td>

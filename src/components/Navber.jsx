@@ -45,7 +45,7 @@ const handleSignout = () => {
 
   return (
      
-  <nav data-aos="zoom-in-down" className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-300">
+  <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-300">
     <div className="max-w-7xl mx-auto px-3 md:px-6 py-3 flex items-center justify-between">
 
 
@@ -94,6 +94,14 @@ const handleSignout = () => {
         Books
       </NavLink>
     </li>
+    <li>
+      <NavLink
+        className="text-gray-700 hover:bg-purple-100 rounded-lg py-3 px-2 text-lg font-medium block"
+        to={"/about-us"}
+      >
+        About Us
+      </NavLink>
+    </li>
 
     <li>
       <NavLink
@@ -110,7 +118,7 @@ const handleSignout = () => {
 
       {/* Left side logo */}
       <div className="flex items-center gap-3">
-        <img src={logo} alt="logo" className="w-[45px] h-[45px] object-contain" />
+        <img src={logo} alt="logo" className="w-12 h-12 md:w-15 md:h-15 object-contain" />
         <h1 className="text-2xl font-semibold text-gray-900">BookCourier</h1>
       </div>
 
@@ -121,6 +129,9 @@ const handleSignout = () => {
         </li>
         <li>
           <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/books-page"}>Books</NavLink>
+        </li>
+        <li>
+          <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/about-us"}>About Us</NavLink>
         </li>
         <li>
           <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/dashboard"}>Dashboard</NavLink>
@@ -150,36 +161,60 @@ const handleSignout = () => {
         {loading ? (
           <HashLoader color="red" />
         ) : user ? (
+          // dropdown menu option when user will be login
+            <div className="relative group z-50">
+              <div className="relative cursor-pointer">
+                <img
+                  src={
+                    user?.photoURL ||
+                    "https://img.icons8.com/?size=100&id=Y5jFcXHxQBkf&format=png"
+                  }
+                  className="w-10 h-10 md:h-12 md:w-12 rounded-full border-2 border-blue-500 object-cover transition-transform transform group-hover:scale-105"
+                  alt="user-photo"
+                />
+                <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
+              </div>
 
-          // User Dropdown
-          <div className="relative group">
-            <img
-              src={
-                user?.photoURL ||
-                "https://img.icons8.com/?size=100&id=Y5jFcXHxQBkf&format=png"
-              }
-              className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-purple-600 object-cover cursor-pointer"
-              alt="user"
-            />
-
-            <div className="absolute right-0 mt-2 w-72 bg-white shadow-lg rounded-lg p-4 flex flex-col gap-3 
-              opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-
-              <h2 className="text-black text-lg font-semibold">
-                {user?.displayName || "No Name"}
-              </h2>
-              <p className="text-sm font-medium text-gray-700">
-                {user?.email || "No Email"}
-              </p>
-
-              <button
-                onClick={handleSignout}
-                className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition"
+              <div
+                className="absolute right-0 mt-2 w-72 bg-base-100 rounded-xl shadow-2xl border border-base-200 
+                opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                transform group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out origin-top-right overflow-hidden"
               >
-                Sign Out
-              </button>
+                {/* Decorative Header */}
+                <div className="h-20 bg-linear-to-r from-blue-500 to-purple-600"></div>
+
+                <div className="px-5 pb-5">
+                  <div className="relative -mt-10 mb-3 flex justify-center">
+                    <img
+                      src={
+                        user?.photoURL ||
+                        "https://img.icons8.com/?size=100&id=Y5jFcXHxQBkf&format=png"
+                      }
+                      className="w-20 h-20 rounded-full border-4 border-base-100 object-cover shadow-md bg-base-100"
+                      alt="user-photo-lg"
+                    />
+                  </div>
+
+                  <div className="text-center mb-4">
+                    <h2 className="text-lg font-bold text-base-content truncate">
+                      {user?.displayName || "User Name"}
+                    </h2>
+                    <p className="text-sm text-base-content/70 truncate">
+                      {user?.email || "No Email"}
+                    </p>
+                  </div>
+
+                  <div className="border-t border-base-200 my-3"></div>
+
+                  <button
+                    onClick={handleSignout}
+                    className="w-full py-2 px-4 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
 
         ) : (
           // Login Button
