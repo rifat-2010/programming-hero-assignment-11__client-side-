@@ -6,162 +6,177 @@ import { HashLoader } from "react-spinners";
 import { AuthContext } from "../context/AuthContext";
 import { auth } from "../firebase/firebase.config";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
-import logo from '../assets/project-logo.png'
+import logo from "../assets/project-logo.png";
 import useAuth from "../hooks/useAuth";
 
-
-
 const Navbar = () => {
-const {user, setUser, loading} = useAuth();
-// console.log(loading, user);
+  const { user, setUser, loading } = useAuth();
+  // console.log(loading, user);
 
+  // console.log(loading, user);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-// console.log(loading, user);
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || "light");
-
-
-    useEffect(() => {
-    const html = document.querySelector('html')
-     html.setAttribute("data-theme", theme)
-     localStorage.setItem("theme", theme)
-  }, [theme])
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const handleTheme = (checked) => {
-    setTheme(checked ? "dark": "light")
-  }
+    setTheme(checked ? "dark" : "light");
+  };
 
-
-// signOut function
-const handleSignout = () => {
-  signOut(auth)
-    .then(() => {
-      setUser(null); 
-      toast.success("Sign Out successful");
-    })
-    .catch((err) => {
-      toast.error(err.message);
-    });
-};
+  // signOut function
+  const handleSignout = () => {
+    signOut(auth)
+      .then(() => {
+        setUser(null);
+        toast.success("Sign Out successful");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
 
   return (
-     
-  <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-300">
-    <div className="max-w-7xl mx-auto px-3 md:px-6 py-3 flex items-center justify-between">
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-300">
+      <div className="max-w-7xl mx-auto px-3 md:px-6 py-3 flex items-center justify-between">
+        {/* Mobile Menu Button */}
+        <div className="dropdown lg:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-7 w-7 text-gray-800"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </div>
 
+          <ul
+            id="navUl"
+            tabIndex={0}
+            className="menu menu-sm dropdown-content bg-white rounded-xl mt-3 w-64 p-5 shadow-xl space-y-3"
+          >
+            <li>
+              <NavLink
+                className="text-gray-700 hover:bg-purple-100 rounded-lg py-3 px-2 text-lg font-medium block"
+                to={"/"}
+              >
+                Home
+              </NavLink>
+            </li>
 
-{/* Mobile Menu Button */}
-<div className="dropdown lg:hidden">
-  <div
-    tabIndex={0}
-    role="button"
-    className="btn btn-ghost btn-circle"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-7 w-7 text-gray-800"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M4 6h16M4 12h16M4 18h16"
-      />
-    </svg>
-  </div>
+            <li>
+              <NavLink
+                className="text-gray-700 hover:bg-purple-100 rounded-lg py-3 px-2 text-lg font-medium block"
+                to={"/books-page"}
+              >
+                Books
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="text-gray-700 hover:bg-purple-100 rounded-lg py-3 px-2 text-lg font-medium block"
+                to={"/about-us"}
+              >
+                About Us
+              </NavLink>
+            </li>
 
-  <ul
-    id="navUl"
-    tabIndex={0}
-    className="menu menu-sm dropdown-content bg-white rounded-xl mt-3 w-64 p-5 shadow-xl space-y-3"
-  >
-    <li>
-      <NavLink
-        className="text-gray-700 hover:bg-purple-100 rounded-lg py-3 px-2 text-lg font-medium block"
-        to={"/"}
-      >
-        Home
-      </NavLink>
-    </li>
+            {user && (
+              <li>
+                <NavLink
+                  className="text-gray-700 hover:bg-purple-100 rounded-lg py-3 px-2 text-lg font-medium block"
+                  to={"/dashboard"}
+                >
+                  Dashboard
+                </NavLink>
+              </li>
+            )}
+          </ul>
+        </div>
 
-    <li>
-      <NavLink
-        className="text-gray-700 hover:bg-purple-100 rounded-lg py-3 px-2 text-lg font-medium block"
-        to={"/books-page"}
-      >
-        Books
-      </NavLink>
-    </li>
-    <li>
-      <NavLink
-        className="text-gray-700 hover:bg-purple-100 rounded-lg py-3 px-2 text-lg font-medium block"
-        to={"/about-us"}
-      >
-        About Us
-      </NavLink>
-    </li>
+        {/* Left side logo */}
+        <div className="flex items-center gap-3">
+          <img
+            src={logo}
+            alt="logo"
+            className="w-12 h-12 md:w-15 md:h-15 object-contain"
+          />
+          <h1 className="text-2xl font-semibold text-gray-900">BookCourier</h1>
+        </div>
 
-    <li>
-      <NavLink
-        className="text-gray-700 hover:bg-purple-100 rounded-lg py-3 px-2 text-lg font-medium block"
-        to={"/dashboard"}
-      >
-        Dashboard
-      </NavLink>
-    </li>
-  </ul>
-</div>
+        {/* Desktop Nav */}
+        <ul id="navUl" className="hidden lg:flex items-center gap-8">
+          <li>
+            <NavLink
+              className="text-gray-600 hover:text-purple-600 transition-colors"
+              to={"/"}
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="text-gray-600 hover:text-purple-600 transition-colors"
+              to={"/books-page"}
+            >
+              Books
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="text-gray-600 hover:text-purple-600 transition-colors"
+              to={"/about-us"}
+            >
+              About Us
+            </NavLink>
+          </li>
+          {user && (
+            <li>
+              <NavLink
+                className="text-gray-600 hover:text-purple-600 transition-colors"
+                to={"/dashboard"}
+              >
+                Dashboard
+              </NavLink>
+            </li>
+          )}
+        </ul>
 
+        {/* Right side Theme + User */}
+        <div className="flex items-center md:gap-4 gap-2 mx-1">
+          {/* toogle button */}
+          <button
+            onClick={() => handleTheme(theme === "light")}
+            className="w-10 h-10 cursor-pointer flex items-center justify-center"
+          >
+            {theme === "light" ? (
+              <MdLightMode
+                size={30}
+                className="text-black transition-all duration-300"
+              />
+            ) : (
+              <MdDarkMode
+                size={30}
+                className="text-white transition-all duration-300"
+              />
+            )}
+          </button>
 
-
-      {/* Left side logo */}
-      <div className="flex items-center gap-3">
-        <img src={logo} alt="logo" className="w-12 h-12 md:w-15 md:h-15 object-contain" />
-        <h1 className="text-2xl font-semibold text-gray-900">BookCourier</h1>
-      </div>
-
-      {/* Desktop Nav */}
-      <ul id="navUl" className="hidden lg:flex items-center gap-8">
-        <li>
-          <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/"}>Home</NavLink>
-        </li>
-        <li>
-          <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/books-page"}>Books</NavLink>
-        </li>
-        <li>
-          <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/about-us"}>About Us</NavLink>
-        </li>
-        <li>
-          <NavLink className="text-gray-600 hover:text-purple-600 transition-colors" to={"/dashboard"}>Dashboard</NavLink>
-        </li>
-      </ul>
-
-      {/* Right side Theme + User */}
-      <div className="flex items-center md:gap-4 gap-2 mx-1">
-
-
-  {/* toogle button */}
-  <button
-     onClick={() => handleTheme(theme === "light")}
-     className="w-10 h-10 cursor-pointer flex items-center justify-center"
-  >
-    {theme === "light" ? (
-        <MdLightMode size={30} className="text-black transition-all duration-300" />
-          ) : (
-        <MdDarkMode size={30} className="text-white transition-all duration-300" />
-    )}
-  </button>
-
-
-
-
-        {/* Loading spinner */}
-        {loading ? (
-          <HashLoader color="red" />
-        ) : user ? (
-          // dropdown menu option when user will be login
+          {/* Loading spinner */}
+          {loading ? (
+            <HashLoader color="red" />
+          ) : user ? (
+            // dropdown menu option when user will be login
             <div className="relative group z-50">
               <div className="relative cursor-pointer">
                 <img
@@ -215,22 +230,19 @@ const handleSignout = () => {
                 </div>
               </div>
             </div>
-
-        ) : (
-          // Login Button
-          <NavLink
-            to={"/signIn-page"}
-            className="bg-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-purple-700 transition shadow"
-          >
-            Login
-          </NavLink>
-        )}
+          ) : (
+            // Login Button
+            <NavLink
+              to={"/signIn-page"}
+              className="bg-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-purple-700 transition shadow"
+            >
+              Login
+            </NavLink>
+          )}
+        </div>
       </div>
-
-
-
-    </div>
-  </nav>
-)};
+    </nav>
+  );
+};
 
 export default Navbar;

@@ -48,7 +48,9 @@ export const router = createBrowserRouter([
       },
       {
         path: "/book-details_page/:id",
-        element: <BookDetailsPage />,
+        element: <PrivateRoute>
+                  <BookDetailsPage />
+                </PrivateRoute>,
         loader: ({ params }) =>
           fetch(
             `https://book-courier-server-kappa.vercel.app/books/${params.id}`
@@ -56,7 +58,9 @@ export const router = createBrowserRouter([
       },
       {
         path: "/payment-success",
-        element: <PaymentSuccess />,
+        element: <PrivateRoute>
+                  <PaymentSuccess />
+                </PrivateRoute>,
       },
     ],
   },
